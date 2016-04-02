@@ -1,0 +1,10 @@
+launch_nuke$Launch Nuke$$False
+__upgrade_check$Check for App Upgrades...$Artist$False
+launch_mari$Launch Mari$$False
+Jump to Screening Room in RV$Jump to Screening Room in RV$$False
+Jump to Screening Room Web Player$Jump to Screening Room Web Player$$False
+show_in_filesystem$Show in File System$$True
+launch_photoshop$Launch Photoshop$$False
+launch_hiero$Launch Hiero$$False
+__core_info$Check for Core Upgrades...$Artist$False
+launch_maya$Launch Maya$$False

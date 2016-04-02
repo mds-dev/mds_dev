@@ -1,0 +1,9 @@
+# Shotgun Pipeline Toolkit configuration file
+# this file was automatically created
+
+host: https://mds.shotgunstudio.com
+api_script: Toolkit
+api_key: 102f87996fc688c8b1c8063a954bab514865896a4bf3eeb5977e536af676492a
+http_proxy: null
+
+# End of file.

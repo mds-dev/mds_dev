@@ -1,0 +1,339 @@
+#! C:/apps/nuke/9.0v4/nuke-9.0.4.dll -nx
+version 9.0 v4
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="0" w="2560" h="1560" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1881" stretch="1"/>
+            <splitter orientation="2">
+                <split size="878"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="617"/>
+                <dock id="" activePageId="DAG.2" focus="true">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                    <page id="DAG.2"/>
+                </dock>
+            </splitter>
+            <split size="615"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name //productions/boad/Pipeline/sandbox/install/apps/app_store/tk-nuke-quickdailies/v0.1.8/resources/quickdailynode.nk
+ frame 50
+ format "1280 720 0 0 1280 720 1 HD_720"
+ proxy_format "1280 720 0 0 1280 720 1 HD_720"
+ addUserKnob {20 mariTab l Mari}
+ addUserKnob {26 cmdStatus l "listen status" t "The status of Nuke's command port" T <b>Disabled</b>}
+ addUserKnob {26 sendStatus l "send status" t "The status of Nuke's connection to Mari" T <b>Inactive</b>}
+ addUserKnob {3 socketPort l "nuke command port" t "Port to listen on. Make sure this matches the command port set in Mari's \"Nuke\" Palette."}
+ socketPort 50107
+ addUserKnob {6 enableSocket l enabled -STARTLINE}
+ addUserKnob {26 divider l "" +STARTLINE}
+ addUserKnob {20 advanced n 1}
+ advanced 0
+ addUserKnob {3 portRange l "port range" t "If the main specified command port is unavailable, Nuke will try using the next port number, and continue until successful or the indicated number of ports have been tried."}
+ portRange 200
+ addUserKnob {4 enablePortRange l "" t "Indicates whether to use a range of ports up to the given number, or to use only the single one specified." -STARTLINE M {"use range" "single port only"}}
+ addUserKnob {6 localhostOnly l "local host only" t "This determines whether the Mari bridge server will listen for connections from any machine, or from \"localhost\" (the local machine) only.<p>Only allowing connections from localhost is more secure, but will prevent you from using the Nuke&lt;&gt;Mari workflow across the network." +STARTLINE}
+ addUserKnob {1 hostName l "mari host" t "The machine name or IP address that Mari is running on.\nLeave empty if both Mari and Nuke are running on the same machine."}
+ hostName localhost
+ addUserKnob {3 socketPortSend l port t "Port that Mari is listening to. Make sure this matches the command port set in Mari's preferences." -STARTLINE}
+ socketPortSend 6100
+ addUserKnob {2 mariDataDir l "mari data dir" t "Path to directory that will hold transient data to be sent to Mari (exrs, objs and fbx files). If this is left empty, a \"mari\" directory will be created in the nk file's location"}
+ mariDataDir "\[getenv NUKE_TEMP_DIR]/mariData"
+ addUserKnob {2 mariLocation l "mari launch path" t "The path to launch Mari from.<br>This can also be set using the <b>MARI_INSTALL_PATH</b> environment variable."}
+ addUserKnob {20 endGroup n -1}
+}
+Group {
+ inputs 0
+ name ShotgunQuickDaily
+ note_font Verdana
+ selected true
+ xpos -365
+ ypos -26
+ mapsize {0.15 0.15}
+ addUserKnob {20 tanktab l "Shotgun Quick Daily"}
+ addUserKnob {26 burninType l "" +STARTLINE T "BURNIN TYPE"}
+ addUserKnob {26 burninDescription l "" +STARTLINE T "Please select the type of burnin your require. \n\nShot - Uses our standard font size and film gate.\nAsset - Uses a smaller font size and no gate.\n"}
+ addUserKnob {4 burninOption l "Burnin Option" M {Shot Asset ""}}
+ addUserKnob {4 format l Format M {"1280 x 720" "1920 x 1080" ""}}
+ addUserKnob {26 Divider l "" +STARTLINE}
+ addUserKnob {22 doit l "Create Quick Daily" T "# have to gracefully support the case when \n# Sgtk is not in the system at all or when \n# running an incompatible version of Sgtk.\nimport nuke\ntry:\n  app = nuke.tk_nuke_quickdailies\n  fn = app.create_daily_v1\nexcept Exception, e:\n  nuke.warning(\"Could not render Shotgun Quickdaily! Most likely Sgtk is not currently active. Message: %s\" % e)\nelse:\n  fn(nuke.thisNode())\n\n" +STARTLINE}
+ addUserKnob {26 ButonDescription l "" +STARTLINE T "\nClicking the above button will:\n\n1. Create a quicktime\n2. Place it in the correct location on disk\n3. Send it to Shotgun ready for review"}
+ addUserKnob {26 Divider l "" +STARTLINE}
+}
+ BackdropNode {
+  inputs 0
+  name Modified_Default
+  tile_color 0x7171c600
+  note_font_size 42
+  xpos 299
+  ypos -470
+  bdwidth 522
+  bdheight 300
+ }
+ NoOp {
+  inputs 0
+  name burnInCtrl
+  tile_color 0xff5f00ff
+  gl_color 0xff5f00ff
+  xpos 520
+  ypos -331
+  addUserKnob {20 User}
+  addUserKnob {7 fontsize l "Font Size" R 0 100}
+  fontsize {{"\[value root.height]/30 / (switch.which+1)"}}
+  addUserKnob {7 bleed l Bleed R 5 50}
+  bleed 20
+ }
+ Input {
+  inputs 0
+  name Input1
+  xpos 360
+  ypos -860
+ }
+ Reformat {
+  format "1920 1080 0 0 1920 1080 1 HD_1080"
+  name Reformat2
+  xpos 360
+  ypos -766
+ }
+set N39b6400 [stack 0]
+push $N39b6400
+ FormatCrop {
+  name FormatCrop1
+  label "\[value presets]"
+  xpos 260
+  ypos -666
+  outputview solid
+  multiply {0 0 0 0}
+  value 0.9
+ }
+ Switch {
+  inputs 2
+  which {{parent.burninOption}}
+  name switch
+  xpos 360
+  ypos -560
+ }
+ Text {
+  message ""
+  size {{burnInCtrl.fontsize}}
+  leading 0.15
+  yjustify top
+  Transform 1
+  box {{burnInCtrl.bleed x1 20} {"\[value root.height]/2" x1 228} {"\[value root.width]/2" x1 1024} {"\[value root.height] -burnInCtrl.bleed" x1 1536}}
+  color 0.5
+  name top_left_text
+  tile_color 0xff0000ff
+  gl_color 0xff0000ff
+  xpos 360
+  ypos -411
+ }
+ Text {
+  message ""
+  size {{"burnInCtrl.fontsize *2"}}
+  xjustify center
+  yjustify top
+  Transform 1
+  box {0 {"\[value root.width]/2"} {"\[value root.width]"} {"\[value root.height] -burnInCtrl.bleed"}}
+  center {640 360}
+  color 0.5
+  name top_center_text
+  tile_color 0xffa3ff
+  gl_color 0xffa3ff
+  xpos 520
+  ypos -411
+ }
+ Text {
+  message ""
+  size {{burnInCtrl.fontsize}}
+  leading 0.15
+  xjustify right
+  yjustify top
+  Transform 1
+  box {{"\[value root.width] - burnInCtrl.bleed"} {"\[value root.height]/2"} {"\[value root.width]/2"} {"\[value root.height] -burnInCtrl.bleed"}}
+  color 0.5
+  name top_right_text
+  tile_color 0xff3fff
+  gl_color 0xff3fff
+  xpos 680
+  ypos -411
+ }
+ Text {
+  message ""
+  size {{burnInCtrl.fontsize}}
+  leading 0.15
+  xjustify right
+  yjustify bottom
+  Transform 1
+  box {{"\[value root.width]/2"} {burnInCtrl.bleed} {"\[value root.width] - burnInCtrl.bleed"} {"\[value root.height]/2"}}
+  center {640 360}
+  color 0.5
+  name bottom_right_text
+  tile_color 0xaa55ffff
+  gl_color 0xaa55ffff
+  xpos 680
+  ypos -251
+ }
+ Text {
+  message agfdgagafddgagrtregdf
+  size {{burnInCtrl.fontsize}}
+  leading 0.15
+  yjustify bottom
+  Transform 1
+  box {{burnInCtrl.bleed} {burnInCtrl.bleed} {"\[value root.width]/2"} {"\[value root.height]/2"}}
+  color 0.5
+  name bottom_left_text
+  tile_color 0xffbf00ff
+  gl_color 0xffbf00ff
+  xpos 360
+  ypos -251
+ }
+ ColorWheel {
+  inputs 0
+  gamma 0.45
+  rotate 137
+  name ColorWheel1
+  xpos 57
+  ypos -333
+ }
+ Reformat {
+  type "to box"
+  box_width 300
+  name Reformat1
+  xpos 57
+  ypos -212
+ }
+ Transform {
+  translate {100 100}
+  name Transform
+  xpos 57
+  ypos -160
+ }
+ Constant {
+  inputs 0
+  name slate_base
+  xpos -143
+  ypos -333
+ }
+ Text {
+  message ""
+  size 60
+  leading 0.3
+  yjustify center
+  Transform 1
+  box {300 {"(\[value root.height]/2)-500"} 1800 1389}
+  name slate_info
+  xpos -143
+  ypos -160
+ }
+ Merge {
+  inputs 2
+  name slate_merge
+  xpos -43
+  ypos -60
+ }
+ Switch {
+  inputs 2
+  which {{"\[python -execlocal first_frame\\ =\\ nuke.root().firstFrame()\\nlast_frame\\ =\\ nuke.root().lastFrame()\\ncurr_frame\\ =\\ nuke.root()\\\[\\\"frame\\\"\\].value()\\n\\nif\\ curr_frame\\ <\\ first_frame:\\n\\ \\ #\\ frames\\ before\\ the\\ start\\ of\\ the\\ sequence\\n\\ \\ #\\ switch\\ to\\ slate\\n\\ \\ ret\\ =\\ 0\\nelse:\\n\\ \\ #\\ play\\ back\\ sequence\\ with\\ burnins\\n\\ \\ ret\\ =\\ 1\\n\\n]" x4 0 x1004 0 x1005 1}}
+  name slate_or_burnin_chooser
+  label "Switches to the slate if curr_frame < start_frame for the current scene."
+  xpos 357
+  ypos -66
+ }
+set N1f415400 [stack 0]
+ Reformat {
+  type "to box"
+  box_width 1920
+  box_height 1080
+  box_fixed true
+  resize fit
+  black_outside true
+  name mov_1080
+  xpos 157
+  ypos 90
+ }
+set N1f415000 [stack 0]
+ Viewer {
+  frame_range 0-2
+  name Viewer1
+  xpos 157
+  ypos 290
+ }
+push $N1f415000
+push $N1f415400
+ Reformat {
+  type "to box"
+  box_width 1280
+  box_height 720
+  box_fixed true
+  resize fit
+  black_outside true
+  name mov_720
+  xpos 357
+  ypos 90
+ }
+ Switch {
+  inputs 2
+  which {{parent.format}}
+  name Switch1
+  xpos 357
+  ypos 192
+ }
+ Write {
+  file_type mov
+  meta_codec apcs
+  mov32_pixel_format {{0} "default (YCbCrA 8-bit 444 Biased (r408))" "RGBA  8-bit" "YCbCrA 8-bit 444 Biased (r408)" "YCbCr  8-bit 422 (2vuy)"}
+  mov64_codec apcs
+  mov64_bitrate 20000
+  mov64_bitrate_tolerance 40000000
+  mov64_quality_min 2
+  mov64_quality_max 31
+  mov64_gop_size 12
+  mov64_b_frames 0
+  checkHashOnRead false
+  name mov_writer
+  xpos 357
+  ypos 290
+  disable true
+ }
+ Output {
+  name Output1
+  xpos 360
+  ypos 390
+ }
+push $N1f415400
+ Reformat {
+  type "to box"
+  box_width 240
+  box_height 170
+  box_fixed true
+  resize fit
+  black_outside true
+  name Reformat3
+  xpos 557
+  ypos 90
+ }
+ Write {
+  file_type png
+  checkHashOnRead false
+  name png_writer
+  xpos 557
+  ypos 290
+  disable true
+ }
+end_group

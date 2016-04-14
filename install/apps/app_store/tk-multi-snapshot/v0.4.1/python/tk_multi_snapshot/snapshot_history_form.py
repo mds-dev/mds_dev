@@ -17,6 +17,7 @@ class SnapshotHistoryForm(QtGui.QWidget):
     restore = QtCore.Signal(QtGui.QWidget, basestring, basestring)
     snapshot = QtCore.Signal(QtGui.QWidget)
     closed = QtCore.Signal(QtGui.QWidget)
+    delete = QtCore.Signal(QtGui.QWidget, basestring, basestring)
     
     def __init__(self, app, handler, parent = None):
         """
@@ -40,6 +41,10 @@ class SnapshotHistoryForm(QtGui.QWidget):
         self._ui.snapshot_list.action_requested.connect(self._on_restore)
         self._ui.restore_btn.clicked.connect(self._on_restore)
         
+#Edited by Chet
+#Add delete button
+        self._ui.delete_btn.clicked.connect(self._on_delete_btn_clicked)
+
         self._ui.snapshot_btn.clicked.connect(self._on_snapshot_btn_clicked)
         
     @property
@@ -97,7 +102,14 @@ class SnapshotHistoryForm(QtGui.QWidget):
     def _on_restore(self):
         path = self._ui.snapshot_list.get_selected_path()
         self.restore.emit(self, self._path, path)
-        
+    
+#Edited by Chetan
+#Added an emit to the delete button
+    def _on_delete_btn_clicked(self):
+        print "Delete button clicked"
+        path = self._ui.snapshot_list.get_selected_path()
+        self.delete.emit(self, self._path, path)
+
     def _on_snapshot_btn_clicked(self):
         self.snapshot.emit(self)
         

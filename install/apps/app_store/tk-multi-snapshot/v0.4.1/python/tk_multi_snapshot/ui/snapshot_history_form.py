@@ -58,6 +58,14 @@ class Ui_SnapshotHistoryForm(object):
         self.horizontalLayout_2.addWidget(self.snapshot_btn)
         spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem)
+        
+        #Edited by Chetan
+        self.delete_btn = QtGui.QPushButton(SnapshotHistoryForm)
+        self.delete_btn.setMinimumSize(QtCore.QSize(90, 0))
+        self.delete_btn.setObjectName("delete_btn")
+        self.horizontalLayout_2.addWidget(self.delete_btn)
+
+
         self.close_btn = QtGui.QPushButton(SnapshotHistoryForm)
         self.close_btn.setMinimumSize(QtCore.QSize(90, 0))
         self.close_btn.setObjectName("close_btn")
@@ -77,6 +85,9 @@ class Ui_SnapshotHistoryForm(object):
         SnapshotHistoryForm.setWindowTitle(QtGui.QApplication.translate("SnapshotHistoryForm", "Form", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("SnapshotHistoryForm", "The list below shows all the snapshots of the currently open work file.  You can go back to a previous version by selecting it and clicking Restore.", None, QtGui.QApplication.UnicodeUTF8))
         self.snapshot_btn.setText(QtGui.QApplication.translate("SnapshotHistoryForm", "New Snapshot...", None, QtGui.QApplication.UnicodeUTF8))
+        
+        #Edited by Chetan
+        self.delete_btn.setText(QtGui.QApplication.translate("SnapshotHistoryForm", "Delete", None, QtGui.QApplication.UnicodeUTF8))
         self.close_btn.setText(QtGui.QApplication.translate("SnapshotHistoryForm", "Close", None, QtGui.QApplication.UnicodeUTF8))
         self.restore_btn.setText(QtGui.QApplication.translate("SnapshotHistoryForm", "Restore", None, QtGui.QApplication.UnicodeUTF8))
 

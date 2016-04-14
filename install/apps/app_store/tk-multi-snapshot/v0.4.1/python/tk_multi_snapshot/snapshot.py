@@ -159,7 +159,12 @@ class Snapshot(object):
         self._last_snapshot_result = snapshot_path
         return self._last_snapshot_result
         
-    def restore_snapshot(self, current_path, snapshot_path):
+#Edited by Chetan
+#Adding a check to see if a snapshot of the current scene should be taken.
+#Taken from version v0.6.1
+
+#Edited by Chet OLD -> def restore_snapshot(self, current_path, snapshot_path):
+    def restore_snapshot(self, current_path, snapshot_path, snapshot_current=True):
         """
         Restore snapshot from the specified path
         """
@@ -171,14 +176,17 @@ class Snapshot(object):
         self.save_current_file()
         
         # check to see if work file exists and if it does, snapshot it first:
-        if os.path.exists(current_path):
-            try:
-                comment = ("Automatic snapshot before restoring older snapshot '%s'" 
-                            % os.path.basename(snapshot_path))
-                self.do_snapshot(current_path, None, comment)
-            except:
-                # reformat error?
-                raise
+        
+#Edited by Chetan Added -> "if snapshot_current:""
+        if snapshot_current:
+            if os.path.exists(current_path):
+                try:
+                    comment = ("Automatic snapshot before restoring older snapshot '%s'" 
+                                % os.path.basename(snapshot_path))
+                    self.do_snapshot(current_path, None, comment)
+                except:
+                    # reformat error?
+                    raise
         
         # reset the current scene in case the file is locked by being 
         # open - Softimage does this!
@@ -192,6 +200,8 @@ class Snapshot(object):
         # finally, use hook to re-open work file:
         self._app.log_debug("Snapshot Restore: Opening %s" % (current_path))
         self.open_file(current_path)
+
+
 
     def find_snapshot_history(self, file_path):
         """
@@ -467,12 +477,106 @@ class Snapshot(object):
         snapshot_history_form.restore.connect(self._on_history_restore_snapshot)
         snapshot_history_form.snapshot.connect(self._on_history_do_snapshot)
         snapshot_history_form.closed.connect(self._on_history_dlg_closed)
- 
+#Edited by Chetan
+#Add a delete button to the snapshot history form and connect the method
+        snapshot_history_form.delete.connect(self._on_history_delete_snapshot)
+
+#Edited by Chetan.
+#Method to delete snapshots
+    def delete_snapshot(self, current_path, snapshot_path):
+        """
+        Method to delete the snapshot file
+        """
+        print snapshot_path
+        #remove the snapshot file
+        if not os.path.exists(snapshot_path):
+            raise TankError("Snapshot: Snapshot file %s could not be found on disk!" % snapshot_path)
+        else: 
+            try:
+                os.remove(snapshot_path)
+            except Exception, e:
+                self._app.log_exception("Snapshot Delete Failed!")
+                return
+
+        #remove the thumbnail file
+        thumbnail_path = self._get_thumbnail_file_path(snapshot_path)
+        if os.path.exists(thumbnail_path):
+            try:
+                os.remove(thumbnail_path)
+            except Exception, e:
+                self._app.log_exception("Snapshot Delete Failed!")
+                return
+
+
+        #remove the comment from the yml
+        comments_file_path = self._get_comments_file_path(snapshot_path)
+
+        self._app.log_debug("Snapshot: Deleting comment from file %s" % comments_file_path)
+        
+        try:
+            if os.path.exists(comments_file_path):
+                comments = yaml.load(open(comments_file_path, "r"))
+                comments_key = os.path.basename(snapshot_path)
+                del comments[comments_key]   
+
+                # and save yml file
+                old_umask = os.umask(0) 
+                try:           
+                    yaml.dump(comments, open(comments_file_path, "w"))
+                finally:
+                    os.umask(old_umask) 
+        except TankError, e:
+           self._app.log_exception("Snapshot Delete Failed!")
+           return
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Edited by Chetan
+#Method called when the delete button is pressed
+    def _on_history_delete_snapshot(self, snapshot_history_form, current_path, snapshot_path):
+        """
+        Switch to the snapshot UI from the history UI
+        """
+
+        current_path = safe_to_string(current_path)
+        snapshot_path = safe_to_string(snapshot_path)
+
+        actual_current_path = self.get_current_file_path()
+        if actual_current_path != current_path:
+            snapshot_history_form.refresh()
+            return
+
+        try:
+            print "entering method to delete snapshot"
+            self.delete_snapshot(current_path, snapshot_path)
+        except Exception, e:
+            self._app.log_exception("Snapshot Delete Failed!")
+            return
+        
+        snapshot_history_form.refresh()
+
     def _on_history_dlg_closed(self, widget):
         """
         Called when the history dialog is closed.  Hooks are 
         disconnected to allow the widget to be released
         """
+        widget.delete.disconnect(self._on_history_delete_snapshot)
         widget.restore.disconnect(self._on_history_restore_snapshot)
         widget.snapshot.disconnect(self._on_history_do_snapshot)
         widget.closed.disconnect(self._on_history_dlg_closed)
@@ -494,15 +598,36 @@ class Snapshot(object):
             return
         
         # confirm snapshot restore:
+
+#Edited by Chetan Added a check to see if the user wants to save a snapshot before restoring
+#Taken from version v0.6.1
+
+#OLD
+#res = QtGui.QMessageBox.question(None,  "Restore Snapshot?", 
+#                                 "A snapshot of the current work file will be made before restoring.\n\nContinue?", 
+#                                 QtGui.QMessageBox.Ok | QtGui.QMessageBox.Cancel)
+        
+#NEW
         res = QtGui.QMessageBox.question(None,  "Restore Snapshot?", 
-                                         "A snapshot of the current work file will be made before restoring.\n\nContinue?", 
-                                         QtGui.QMessageBox.Ok | QtGui.QMessageBox.Cancel)
+                                         "Do you want to snapshot the current work file before restoring?", 
+                                         QtGui.QMessageBox.Yes | QtGui.QMessageBox.No | QtGui.QMessageBox.Cancel)
+
         if res == QtGui.QMessageBox.Cancel:
             return
         
+#Edited by Chetan
+#Get the value of whether a user wants to save a snapshot before restoring. 
+        snapshot_current = (res == QtGui.QMessageBox.Yes)
+        
         # do snapshot restore
+        
+#NEW
         try:
-            self.restore_snapshot(current_path, snapshot_path)
+            self.restore_snapshot(current_path, snapshot_path, snapshot_current=snapshot_current)
+        
+#OLD
+        #try:
+        #    self.restore_snapshot(current_path, snapshot_path, )
         except TankError, e:
             QtGui.QMessageBox.critical(None, "Snapshot Restore Failed!", e)
             return

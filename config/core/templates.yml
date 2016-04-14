@@ -525,11 +525,11 @@ paths:
         root_name: 'primary'
     # The location of WIP files
     maya_asset_work:
-        definition: '@asset_root/work/maya/{Asset}_{Step}_v{version}.ma'
+        definition: '@asset_root/work/maya/{Asset}_{Step}_v{version}_[{name}].ma'
         root_name: 'primary'
     # The location of backups of WIP files
     maya_asset_snapshot:
-        definition: '@asset_root/work/maya/snapshots/{Asset}_{Step}_v{version}_r{increment}.ma'
+        definition: '@asset_root/work/maya/snapshots/{Asset}_{Step}_v{version}_r{increment}_[{name}].ma'
         root_name: 'primary'
     # The location of published maya files
     maya_asset_publish:
@@ -704,10 +704,10 @@ strings:
     # when a review Version in Shotgun is created inside of Nuke, this is the 
     # name that is being given to it (the code field)
     nuke_shot_version_name: "{Shot}_[{name}]_{output}_v{version}.{iteration}"
-    nuke_quick_shot_version_name: "{Shot}_[{name}]_quick_{iteration}"
+    nuke_quick_shot_version_name: "{Shot}_{Step}_v{iteration}"
 
     nuke_asset_version_name: "{Asset}_[{name}]_{output}_v{version}.{iteration}"
-    nuke_quick_asset_version_name: "{Asset}_[{name}]_quick_{iteration}"
+    nuke_quick_asset_version_name: "{Asset}_{Step}_v{iteration}"
 
     # defines how the {tk_version} token in Hiero gets formatted back to tk.
     hiero_version: "{version}"

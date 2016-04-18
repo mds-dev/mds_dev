@@ -153,7 +153,7 @@ class PrimaryPublishHook(Hook):
         if fields["Step"] in ["Anim","Track"]:
             self.parent.log_debug("Empty Maya Publish")
             publishObj = AlembicPublish()
-        elif fields["Step"] in ["Surface"]:
+        elif fields["Step"] in ["surface"]:
             self.parent.log_debug("Surface Maya Publish")
             publishObj = SurfacePublish()
         elif fields["Step"] in ["FX"] and fields.has_key("Asset"):

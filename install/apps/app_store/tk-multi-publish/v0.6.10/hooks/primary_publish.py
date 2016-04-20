@@ -150,7 +150,11 @@ class PrimaryPublishHook(Hook):
 
         publishObj = None
 
-        if fields["Step"] in ["Anim","Track"]:
+#Edited by Chet 20/04/2016
+#Split Anim and Track steps to call different functions. 
+
+        emptyScene = True
+        if fields["Step"] in ["Anim"]:
             self.parent.log_debug("Empty Maya Publish")
             publishObj = AlembicPublish()
         elif fields["Step"] in ["surface"]:
@@ -1142,16 +1146,21 @@ class DefaultMayaPublish(object):
 
 
 class EmptyMayaPublish(DefaultMayaPublish):
+
     def _setup_publish_(self):
         super(EmptyMayaPublish, self)._setup_publish_()
         self.parent.log_debug("Publishing a empty scene file")
-        self.current_wip_path = r"\\productions\boad\Pipeline\tools\maya\shaderManager\EmptyMaya.ma"
+        if self.empty:
+            self.current_wip_path = r"\\productions\boad\Pipeline\tools\maya\shaderManager\EmptyMaya.ma"
+
 
 
 class AlembicPublish(EmptyMayaPublish):
-    def __init__(self):
+
+    def __init__(self, emptyScene):
         super(AlembicPublish, self).__init__()
         self.data = None
+        self.empty = emptyScene;
 
     def _data_publish_(self):
         self._export_alembic_()

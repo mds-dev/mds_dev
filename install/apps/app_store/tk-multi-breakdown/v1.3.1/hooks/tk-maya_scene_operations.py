@@ -90,7 +90,7 @@ class BreakdownSceneOperations(Hook):
             if node_type == "reference":
 
                 # Check if it is surfacing task
-                if "Surface" in new_path:
+                if "surface" in new_path:
                     self._check_existing_model_alembic_(new_path, node)
 
                 # maya reference
@@ -104,7 +104,7 @@ class BreakdownSceneOperations(Hook):
                     rn.namespace = newNameSpace
 
                 # Load the shaders into scene
-                if "Surface" in new_path:
+                if "surface" in new_path:
                     self._update_published_shaders(new_path)
 
 

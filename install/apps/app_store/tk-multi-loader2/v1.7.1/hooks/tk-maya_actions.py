@@ -163,7 +163,7 @@ class MayaActions(HookBaseClass):
                                       namespace=namespace)
 
         # Load the shaders into scene
-        if any(x in path for x in ["Sculpt","Surface"]):
+        if any(x in path for x in ["sculpt","surface"]):
             self._import_published_shaders(path,ref)
 
     def _import_published_shaders(self,path,ref):

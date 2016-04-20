@@ -71,7 +71,7 @@ photoshop_extras:
 # Hiero
 
 hiero_mac: /Applications/Nuke9.0v8/Hiero9.0v7.app/Hiero9.0v7
-hiero_win: 'C:\apps\hiero\1.9v1\hiero.exe'
+hiero_win: 'C:\apps\hiero\1.91\hiero.exe'
 hiero_linux: /usr/local/Hiero1.9v1/bin/Hiero1.9v1
 
 #

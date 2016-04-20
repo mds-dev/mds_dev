@@ -156,7 +156,10 @@ class PrimaryPublishHook(Hook):
         emptyScene = True
         if fields["Step"] in ["Anim"]:
             self.parent.log_debug("Empty Maya Publish")
-            publishObj = AlembicPublish()
+            publishObj = AlembicPublish(emptyScene)
+        elif fields["Step"] in ["Track"]:
+            self.parent.log_debug("Publish Alembic Camera")
+            publishObj = AlembicPublish(not emptyScene)
         elif fields["Step"] in ["surface"]:
             self.parent.log_debug("Surface Maya Publish")
             publishObj = SurfacePublish()

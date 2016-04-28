@@ -1,25 +1,25 @@
-#! C:/apps/nuke/9.0v4/nuke-9.0.4.dll -nx
-version 9.0 v4
+#! C:/apps/nuke/9.0v8/nuke-9.0.8.dll -nx
+version 9.0 v8
 define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
 <layout version="1.0">
-    <window x="0" y="0" w="1920" h="1050" screen="0">
+    <window x="-8" y="-8" w="1936" h="1176" maximized="1" screen="1">
         <splitter orientation="1">
             <split size="40"/>
             <dock id="" hideTitles="1" activePageId="Toolbar.1">
                 <page id="Toolbar.1"/>
             </dock>
-            <split size="1241" stretch="1"/>
+            <split size="1257" stretch="1"/>
             <splitter orientation="2">
-                <split size="578"/>
+                <split size="651"/>
                 <dock id="" activePageId="Viewer.1">
                     <page id="Viewer.1"/>
+                    <page id="Viewer.2"/>
                 </dock>
-                <split size="407"/>
-                <dock id="" activePageId="DAG.2" focus="true">
+                <split size="457"/>
+                <dock id="" activePageId="DAG.1" focus="true">
                     <page id="DAG.1"/>
                     <page id="Curve Editor.1"/>
                     <page id="DopeSheet.1"/>
-                    <page id="DAG.2"/>
                 </dock>
             </splitter>
             <split size="615"/>
@@ -32,10 +32,12 @@ define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
 }
 Root {
  inputs 0
- name //productions/boad/Pipeline/dragonscale/install/apps/app_store/tk-nuke-quickdailies/v0.1.8/resources/quickdailynode.nk
+ name //productions/boad/Pipeline/development/mds_dev/install/apps/app_store/tk-nuke-quickdailies/v0.1.8/resources/quickdailynode.nk
  frame 50
  format "1280 720 0 0 1280 720 1 HD_720"
  proxy_format "1280 720 0 0 1280 720 1 HD_720"
+ defaultViewerLUT "OCIO LUTs"
+ OCIO_config aces
  addUserKnob {20 mariTab l Mari}
  addUserKnob {26 cmdStatus l "listen status" t "The status of Nuke's command port" T <b>Disabled</b>}
  addUserKnob {26 sendStatus l "send status" t "The status of Nuke's connection to Mari" T <b>Inactive</b>}
@@ -63,15 +65,15 @@ Group {
  name ShotgunQuickDaily
  note_font Verdana
  selected true
- xpos -240
- ypos -159
+ xpos -40
+ ypos -491
  mapsize {0.15 0.15}
  addUserKnob {20 tanktab l "Shotgun Quick Daily"}
  addUserKnob {26 burninDescription l "" +STARTLINE T "Please select the type of burnin your require. \n\nShot - Uses our standard font size and film gate.\nAsset - Uses a smaller font size and no gate.\n"}
  addUserKnob {26 ""}
  addUserKnob {26 burninType l "" +STARTLINE T "BURNIN TYPE"}
  addUserKnob {4 burninOption l "Burnin Option" M {Shot Asset ""}}
- addUserKnob {4 format l Format M {"1280 x 720" "1920 x 1080" "" ""}}
+ addUserKnob {4 format l Format M {"1280 x 720" "1920 x 1080" "" "" "" ""}}
  addUserKnob {26 ""}
  addUserKnob {26 Audio l "" +STARTLINE T "\nAUDIO"}
  addUserKnob {41 mov32_audiofile l "audio file" T mov_writer.mov32_audiofile}
@@ -80,13 +82,10 @@ Group {
  addUserKnob {26 Lut l "" +STARTLINE T "\nLUT"}
  addUserKnob {26 LUTDescription l "" +STARTLINE T "Please specify if you are rendering through the Scene LUT or not."}
  addUserKnob {6 LUTon l "LUT Enabled" +STARTLINE}
- LUTon true
  addUserKnob {26 Divider l "" +STARTLINE}
  addUserKnob {22 doit l "Create Quick Daily" T "# have to gracefully support the case when \n# Sgtk is not in the system at all or when \n# running an incompatible version of Sgtk.\nimport nuke\ntry:\n  app = nuke.tk_nuke_quickdailies\n  fn = app.create_daily_v1\nexcept Exception, e:\n  nuke.warning(\"Could not render Shotgun Quickdaily! Most likely Sgtk is not currently active. Message: %s\" % e)\nelse:\n  fn(nuke.thisNode())\n\n" +STARTLINE}
  addUserKnob {26 ButonDescription l "" +STARTLINE T "\nClicking the above button will:\n\n1. Create a quicktime\n2. Place it in the correct location on disk\n3. Send it to Shotgun ready for review"}
  addUserKnob {26 ""}
- addUserKnob {26 DEV l "" +STARTLINE T "DEVELOPMENT SECTION - DO NOT TOUCH"}
- addUserKnob {41 file_type l "file type" T mov_writer.file_type}
 }
  BackdropNode {
   inputs 0
@@ -98,48 +97,68 @@ Group {
   bdwidth 521
   bdheight 371
  }
- NoOp {
-  inputs 0
-  name burnInCtrl
-  tile_color 0xff5f00ff
-  gl_color 0xff5f00ff
-  xpos 520
-  ypos -331
-  addUserKnob {20 User}
-  addUserKnob {7 fontsize l "Font Size" R 0 100}
-  fontsize {{"\[value root.height]/30 / (switch.which+1)"}}
-  addUserKnob {7 bleed l Bleed R 5 50}
-  bleed 20
- }
  Input {
   inputs 0
   name Input1
   xpos 360
-  ypos -869
+  ypos -891
  }
  Reformat {
   format "1920 1080 0 0 1920 1080 1 HD_1080"
   name Reformat2
   xpos 360
-  ypos -775
+  ypos -819
  }
-set N39b9400 [stack 0]
-push $N39b9400
+ set C3b92800 [stack 0]
+set N3b92800 [stack 0]
+ Constant {
+  inputs 0
+  channels rgb
+  name Constant1
+  xpos 120
+  ypos -915
+ }
+clone $C3b92800 {
+  xpos 120
+  ypos -819
+  selected false
+ }
  FormatCrop {
-  name FormatCrop1
+  name LINE
   label "\[value presets]"
-  xpos 260
-  ypos -675
+  xpos 120
+  ypos -739
+  multiply {1 1 0 0}
+  value 1
+ }
+ Dot {
+  name Dot1
+  xpos 154
+  ypos -647
+ }
+push $N3b92800
+ FormatCrop {
+  name BAR
+  label "\[value presets]"
+  xpos 280
+  ypos -739
   outputview solid
   multiply {0 0 0 0}
-  value 0.9
+  value 1
+ }
+ Merge2 {
+  inputs 2
+  operation conjoint-over
+  name Merge1
+  xpos 280
+  ypos -651
  }
  Switch {
   inputs 2
   which {{parent.burninOption}}
   name switch
   xpos 360
-  ypos -569
+  ypos -571
  }
  Text {
   message ""
@@ -155,6 +174,7 @@ push $N39b9400
   xpos 360
   ypos -420
  }
+set N204cdc00 [stack 0]
  Text {
   message ""
   size {{"burnInCtrl.fontsize *2"}}
@@ -201,9 +221,9 @@ push $N39b9400
   xpos 680
   ypos -260
  }
-set N25c16000 [stack 0]
+set N204cc400 [stack 0]
  Text {
-  message "\[value root.format.width] x \[value root.format.height]\nLUT: On"
+  message "\[value parent.format]\nLUT: On"
   size {{burnInCtrl.fontsize}}
   leading 0.15
   xjustify center
@@ -218,10 +238,9 @@ set N25c16000 [stack 0]
   xpos 522
   ypos -260
  }
-set N25c3f800 [stack 0]
-push $N25c16000
+push $N204cc400
  Text {
-  message "LUT: Off"
+  message "\[value parent.format]\nLUT: Off"
   size {{burnInCtrl.fontsize}}
   leading 0.15
   xjustify center
@@ -233,7 +252,7 @@ push $N25c16000
   name bottom_center_text_off
   tile_color 0xff000dff
   gl_color 0xff000dff
-  xpos 680
+  xpos 682
   ypos -169
  }
  Switch {
@@ -309,7 +328,40 @@ push $N25c16000
   xpos 360
   ypos -66
  }
-set N26d63c00 [stack 0]
+set N2782c000 [stack 0]
+ Reformat {
+  type "to box"
+  box_width 240
+  box_height 170
+  box_fixed true
+  resize fit
+  black_outside true
+  name Reformat3
+  xpos 600
+  ypos 69
+ }
+ Write {
+  file_type png
+  checkHashOnRead false
+  name png_writer
+  xpos 600
+  ypos 309
+  disable true
+ }
+ NoOp {
+  inputs 0
+  name burnInCtrl
+  tile_color 0xff5f00ff
+  gl_color 0xff5f00ff
+  xpos 520
+  ypos -331
+  addUserKnob {20 User}
+  addUserKnob {7 fontsize l "Font Size" R 0 100}
+  fontsize {{"\[value root.height]/30 / (switch.which+1)"}}
+  addUserKnob {7 bleed l Bleed R 5 50}
+  bleed 20
+ }
+push $N2782c000
  Reformat {
   type "to box"
   box_width 1920
@@ -318,10 +370,10 @@ set N26d63c00 [stack 0]
   resize fit
   black_outside true
   name mov_1080
-  xpos 157
-  ypos 90
+  xpos 324
+  ypos 69
  }
-push $N26d63c00
+push $N2782c000
  Reformat {
   type "to box"
   box_width 1280
@@ -330,15 +382,15 @@ push $N26d63c00
   resize fit
   black_outside true
   name mov_720
-  xpos 360
-  ypos 90
+  xpos 404
+  ypos 69
  }
  Switch {
   inputs 2
   which {{parent.format}}
   name Switch1
   xpos 360
-  ypos 190
+  ypos 227
  }
  Write {
   file_type mov
@@ -346,6 +398,7 @@ push $N26d63c00
   mov32_pixel_format {{0} "default (YCbCrA 8-bit 444 Biased (r408))" "RGBA  8-bit" "YCbCrA 8-bit 444 Biased (r408)" "YCbCr  8-bit 422 (2vuy)"}
   mov64_codec AVdn
   mov64_dnxhd_codec_profile "DNxHD 422 8-bit 145Mbit"
+  mov64_advanced 1
   mov64_bitrate 20000
   mov64_bitrate_tolerance 40000000
   mov64_quality_min 2
@@ -355,7 +408,7 @@ push $N26d63c00
   checkHashOnRead false
   name mov_writer
   xpos 360
-  ypos 290
+  ypos 309
   disable true
  }
  Output {
@@ -363,27 +416,7 @@ push $N26d63c00
   xpos 360
   ypos 390
  }
-push $N26d63c00
- Reformat {
-  type "to box"
-  box_width 240
-  box_height 170
-  box_fixed true
-  resize fit
-  black_outside true
-  name Reformat3
-  xpos 557
-  ypos 90
- }
- Write {
-  file_type png
-  checkHashOnRead false
-  name png_writer
-  xpos 557
-  ypos 290
-  disable true
- }
-push $N25c3f800
+push $N204cdc00
  Viewer {
   frame_range 1-100
   name Viewer1

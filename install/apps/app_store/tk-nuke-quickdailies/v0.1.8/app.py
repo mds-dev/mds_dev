@@ -166,9 +166,9 @@ class NukeQuickDailies(tank.platform.Application):
         nuke.Root()['format'].setValue('HD_1080')
 
         # setup quicktime output resolution
-        width = self.get_setting("width", 1280)
-        height = self.get_setting("height", 720)
-        mov_reformat_node = group_node.node("mov_reformat")
+        #width = self.get_setting("width", 1280)
+        #height = self.get_setting("height", 720)
+        #mov_reformat_node = group_node.node("mov_reformat")
         #mov_reformat_node["box_width"].setValue(width)
         #mov_reformat_node["box_height"].setValue(height)
 

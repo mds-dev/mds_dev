@@ -145,6 +145,13 @@ class PrimaryPublishHook(Hook):
         publish_template = output["publish_template"]
         publish_path = publish_template.apply_fields(fields)
 
+        print "========================================================="
+        print "output = {}".format(output)
+        print "fields = {}".format(fields)
+        print "publish_template = {}".format(publish_template)
+        print "publish_path = {}".format(publish_path)
+        print "========================================================="
+
         if os.path.exists(publish_path):
             raise TankError("The published file named '%s' already exists!" % publish_path)
 
@@ -1149,6 +1156,9 @@ class DefaultMayaPublish(object):
 
 
 class EmptyMayaPublish(DefaultMayaPublish):
+    def __init__(self, emptyScene=False):
+         super(EmptyMayaPublish, self).__init__()
+         self.empty = emptyScene
 
     def _setup_publish_(self):
         super(EmptyMayaPublish, self)._setup_publish_()
@@ -1163,7 +1173,6 @@ class AlembicPublish(EmptyMayaPublish):
     def __init__(self, emptyScene):
         super(AlembicPublish, self).__init__()
         self.data = None
-        self.empty = emptyScene;
 
     def _data_publish_(self):
         self._export_alembic_()

@@ -16,10 +16,11 @@ define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
                     <page id="Viewer.2"/>
                 </dock>
                 <split size="457"/>
-                <dock id="" activePageId="DAG.1" focus="true">
+                <dock id="" activePageId="DAG.2" focus="true">
                     <page id="DAG.1"/>
                     <page id="Curve Editor.1"/>
                     <page id="DopeSheet.1"/>
+                    <page id="DAG.2"/>
                 </dock>
             </splitter>
             <split size="615"/>
@@ -32,8 +33,11 @@ define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
 }
 Root {
  inputs 0
- name //productions/boad/Pipeline/development/mds_dev/install/apps/app_store/tk-nuke-quickdailies/v0.1.8/resources/quickdailynode.nk
- frame 50
+ name //productions/boad/Pipeline/BAD16023/kittenwitch/install/apps/app_store/tk-nuke-quickdailies/v0.1.8/resources/quickdailynode.nk
+ frame 991
+ first_frame 991
+ last_frame 1252
+ lock_range true
  format "1280 720 0 0 1280 720 1 HD_720"
  proxy_format "1280 720 0 0 1280 720 1 HD_720"
  defaultViewerLUT "OCIO LUTs"
@@ -75,6 +79,9 @@ Group {
  addUserKnob {4 burninOption l "Burnin Option" M {Shot Asset ""}}
  addUserKnob {4 format l Format M {"1280 x 720" "1920 x 1080" "" "" "" ""}}
  addUserKnob {26 ""}
+ addUserKnob {26 taskStatesTitle l "" +STARTLINE T "TASK STATES"}
+ addUserKnob {4 animState l "Animation State" M {None Blocking Spline}}
+ addUserKnob {26 "" +STARTLINE}
  addUserKnob {26 Audio l "" +STARTLINE T "\nAUDIO"}
  addUserKnob {41 mov32_audiofile l "audio file" T mov_writer.mov32_audiofile}
  addUserKnob {41 mov32_audio_offset l "audio offset" T mov_writer.mov32_audio_offset}
@@ -82,6 +89,7 @@ Group {
  addUserKnob {26 Lut l "" +STARTLINE T "\nLUT"}
  addUserKnob {26 LUTDescription l "" +STARTLINE T "Please specify if you are rendering through the Scene LUT or not."}
  addUserKnob {6 LUTon l "LUT Enabled" +STARTLINE}
+ LUTon true
  addUserKnob {26 Divider l "" +STARTLINE}
  addUserKnob {22 doit l "Create Quick Daily" T "# have to gracefully support the case when \n# Sgtk is not in the system at all or when \n# running an incompatible version of Sgtk.\nimport nuke\ntry:\n  app = nuke.tk_nuke_quickdailies\n  fn = app.create_daily_v1\nexcept Exception, e:\n  nuke.warning(\"Could not render Shotgun Quickdaily! Most likely Sgtk is not currently active. Message: %s\" % e)\nelse:\n  fn(nuke.thisNode())\n\n" +STARTLINE}
  addUserKnob {26 ButonDescription l "" +STARTLINE T "\nClicking the above button will:\n\n1. Create a quicktime\n2. Place it in the correct location on disk\n3. Send it to Shotgun ready for review"}
@@ -92,73 +100,107 @@ Group {
   name Modified_Default
   tile_color 0x7171c600
   note_font_size 42
-  xpos 299
-  ypos -470
-  bdwidth 521
-  bdheight 371
+  xpos 13
+  ypos -537
+  bdwidth 40
+  bdheight 184
  }
  Input {
   inputs 0
   name Input1
   xpos 360
-  ypos -891
+  ypos -1370
  }
- Reformat {
-  format "1920 1080 0 0 1920 1080 1 HD_1080"
-  name Reformat2
-  xpos 360
-  ypos -819
+set N3762c00 [stack 0]
+ Dot {
+  name Dot3
+  xpos 794
+  ypos -1363
  }
- set C3b92800 [stack 0]
-set N3b92800 [stack 0]
+ Dot {
+  name Dot2
+  xpos 794
+  ypos -803
+ }
  Constant {
   inputs 0
   channels rgb
   name Constant1
-  xpos 120
-  ypos -915
+  xpos 41
+  ypos -1314
  }
-clone $C3b92800 {
-  xpos 120
-  ypos -819
-  selected false
+ Reformat {
+  format "1920 1080 0 0 1920 1080 1 HD_1080"
+  name Reformat2
+  xpos 41
+  ypos -1218
  }
+ set C3763c00 [stack 0]
  FormatCrop {
   name LINE
   label "\[value presets]"
-  xpos 120
-  ypos -739
+  xpos 41
+  ypos -1138
   multiply {1 1 0 0}
   value 1
  }
  Dot {
   name Dot1
-  xpos 154
-  ypos -647
+  xpos 74
+  ypos -886
  }
-push $N3b92800
+push $N3762c00
+ Remove {
+  channels alpha
+  name Remove1
+  xpos 360
+  ypos -1296
+ }
+clone $C3763c00 {
+  xpos 360
+  ypos -1218
+  selected false
+ }
+set N23696c00 [stack 0]
  FormatCrop {
-  name BAR
+  name BAR1
   label "\[value presets]"
-  xpos 280
-  ypos -739
+  xpos 440
+  ypos -1136
   outputview solid
   multiply {0 0 0 0}
   value 1
+ }
+push $N23696c00
+ Blur {
+  inputs 1+1
+  size 18
+  filter quadratic
+  name Blur1
+  xpos 360
+  ypos -1056
+ }
+ FormatCrop {
+  name BAR
+  label "\[value presets]"
+  xpos 360
+  ypos -978
+  outputview solid
+  multiply {0 0 0 0}
  }
  Merge2 {
   inputs 2
   operation conjoint-over
   name Merge1
-  xpos 280
-  ypos -651
+  xpos 360
+  ypos -890
  }
  Switch {
   inputs 2
   which {{parent.burninOption}}
   name switch
   xpos 360
-  ypos -571
+  ypos -808
  }
  Text {
   message ""
@@ -171,10 +213,9 @@ push $N3b92800
   name top_left_text
   tile_color 0xff0000ff
   gl_color 0xff0000ff
-  xpos 360
-  ypos -420
+  xpos 280
+  ypos -728
  }
-set N204cdc00 [stack 0]
  Text {
   message ""
   size {{"burnInCtrl.fontsize *2"}}
@@ -187,8 +228,8 @@ set N204cdc00 [stack 0]
   name top_center_text
   tile_color 0xffa3ff
   gl_color 0xffa3ff
-  xpos 520
-  ypos -420
+  xpos 600
+  ypos -728
  }
  Text {
   message ""
@@ -202,8 +243,8 @@ set N204cdc00 [stack 0]
   name top_right_text
   tile_color 0xff3fff
   gl_color 0xff3fff
-  xpos 680
-  ypos -420
+  xpos 920
+  ypos -731
  }
  Text {
   message ""
@@ -218,49 +259,112 @@ set N204cdc00 [stack 0]
   name bottom_right_text
   tile_color 0xaa55ffff
   gl_color 0xaa55ffff
-  xpos 680
-  ypos -260
+  xpos 920
+  ypos -651
  }
-set N204cc400 [stack 0]
+set N2ef1a800 [stack 0]
  Text {
-  message "\[value parent.format]\nLUT: On"
+  message "\n\nAnim State - Splining"
+  font C:/Windows/Fonts/arial.ttf
   size {{burnInCtrl.fontsize}}
   leading 0.15
   xjustify center
   yjustify bottom
   Transform 1
-  box {{"\[value root.width]/4" x50 320} {burnInCtrl.bleed x50 20} {"(\[value root.width])/2+((\[value root.width])/4)" x50 1260} {"\[value root.height]/4" x50 252}}
+  box {{"\[value root.width]/4" x50 320} {burnInCtrl.bleed x50 20} {"(\[value root.width])/2+((\[value root.width])/4)" x50 1260} {"\[value root.height]/5" x50 252}}
+  center {640 360}
+  color 0.5
+  name bottom_lower_text_animSpline
+  tile_color 0x20ff00ff
+  gl_color 0x20ff00ff
+  xpos 1080
+  ypos -491
+ }
+push $N2ef1a800
+ Text {
+  message "\n\nAnim State - Blocking"
+  font C:/Windows/Fonts/arial.ttf
+  size {{burnInCtrl.fontsize}}
+  leading 0.15
+  xjustify center
+  yjustify bottom
+  Transform 1
+  box {{"\[value root.width]/4" x50 320} {burnInCtrl.bleed x50 20} {"(\[value root.width])/2+((\[value root.width])/4)" x50 1260} {"\[value root.height]/5" x50 252}}
+  center {640 360}
+  color 0.5
+  name bottom_lower_text_animBlock
+  tile_color 0x20ff00ff
+  gl_color 0x20ff00ff
+  xpos 920
+  ypos -491
+ }
+push $N2ef1a800
+ Text {
+  message "\n\nNo Task State"
+  font C:/Windows/Fonts/arial.ttf
+  size {{burnInCtrl.fontsize}}
+  leading 0.15
+  xjustify center
+  yjustify bottom
+  Transform 1
+  box {{"\[value root.width]/4" x50 320} {burnInCtrl.bleed x50 20} {"(\[value root.width])/2+((\[value root.width])/4)" x50 1260} {"\[value root.height]/5" x50 252}}
+  center {640 360}
+  color 0.5
+  name bottom_lower_text_animNone
+  tile_color 0x20ff00ff
+  gl_color 0x20ff00ff
+  xpos 760
+  ypos -491
+ }
+ Switch {
+  inputs 3
+  which {{parent.animState}}
+  name SwitchAnimNote
+  xpos 920
+  ypos -331
+ }
+set N57713c00 [stack 0]
+ Text {
+  message "\[value parent.format] (RRT Enabled)\n"
+  font C:/Windows/Fonts/arial.ttf
+  size {{burnInCtrl.fontsize}}
+  leading 0.15
+  xjustify center
+  yjustify bottom
+  Transform 1
+  box {{"\[value root.width]/4" x50 320} {burnInCtrl.bleed x50 20} {"(\[value root.width])/2+((\[value root.width])/4)" x50 1260} {"\[value root.height]/5" x50 252}}
   center {640 360}
   color 0.5
   name bottom_center_text_on
   tile_color 0xff000dff
   gl_color 0xff000dff
-  xpos 522
-  ypos -260
+  xpos 600
+  ypos -331
  }
-push $N204cc400
+set N2ef1a000 [stack 0]
+push $N57713c00
  Text {
-  message "\[value parent.format]\nLUT: Off"
+  message "\[value parent.format]\n"
   size {{burnInCtrl.fontsize}}
   leading 0.15
   xjustify center
   yjustify bottom
   Transform 1
-  box {{"\[value root.width]/4" x50 320} {burnInCtrl.bleed x50 20} {"(\[value root.width])/2+((\[value root.width])/4)" x50 1260} {"\[value root.height]/4" x50 252}}
+  box {{"\[value root.width]/4" x50 320} {burnInCtrl.bleed x50 20} {"(\[value root.width])/2+((\[value root.width])/4)" x50 1260} {"\[value root.height]/5" x50 252}}
   center {640 360}
   color 0.5
   name bottom_center_text_off
   tile_color 0xff000dff
   gl_color 0xff000dff
-  xpos 682
-  ypos -169
+  xpos 920
+  ypos -181
  }
  Switch {
   inputs 2
   which {{parent.LUTon}}
   name Switch2
-  xpos 522
-  ypos -169
+  xpos 600
+  ypos -181
  }
  Text {
   message ""
@@ -273,35 +377,35 @@ push $N204cc400
   name bottom_left_text
   tile_color 0xffbf00ff
   gl_color 0xffbf00ff
-  xpos 360
-  ypos -169
+  xpos 280
+  ypos -181
  }
  ColorWheel {
   inputs 0
   gamma 0.45
   rotate 137
   name ColorWheel1
-  xpos 57
-  ypos -333
+  xpos 60
+  ypos -372
  }
  Reformat {
   type "to box"
   box_width 300
   name Reformat1
-  xpos 57
-  ypos -212
+  xpos 60
+  ypos -251
  }
  Transform {
   translate {100 100}
   name Transform
-  xpos 57
-  ypos -160
+  xpos 60
+  ypos -199
  }
  Constant {
   inputs 0
   name slate_base
-  xpos -143
-  ypos -333
+  xpos -140
+  ypos -372
  }
  Text {
   message ""
@@ -311,24 +415,24 @@ push $N204cc400
   Transform 1
   box {300 {"(\[value root.height]/2)-500"} 1800 1389}
   name slate_info
-  xpos -143
-  ypos -160
+  xpos -140
+  ypos -199
  }
  Merge {
   inputs 2
   name slate_merge
-  xpos -43
-  ypos -60
+  xpos -40
+  ypos -11
  }
  Switch {
   inputs 2
   which {{"\[python -execlocal first_frame\\ =\\ nuke.root().firstFrame()\\nlast_frame\\ =\\ nuke.root().lastFrame()\\ncurr_frame\\ =\\ nuke.root()\\\[\\\"frame\\\"\\].value()\\n\\nif\\ curr_frame\\ <\\ first_frame:\\n\\ \\ #\\ frames\\ before\\ the\\ start\\ of\\ the\\ sequence\\n\\ \\ #\\ switch\\ to\\ slate\\n\\ \\ ret\\ =\\ 0\\nelse:\\n\\ \\ #\\ play\\ back\\ sequence\\ with\\ burnins\\n\\ \\ ret\\ =\\ 1\\n\\n]" x4 0 x1004 0 x1005 1}}
   name slate_or_burnin_chooser
   label "Switches to the slate if curr_frame < start_frame for the current scene."
-  xpos 360
-  ypos -66
+  xpos 280
+  ypos -19
  }
-set N2782c000 [stack 0]
+set N2ffc6400 [stack 0]
  Reformat {
   type "to box"
   box_width 240
@@ -337,31 +441,18 @@ set N2782c000 [stack 0]
   resize fit
   black_outside true
   name Reformat3
-  xpos 600
-  ypos 69
+  xpos 440
+  ypos 149
  }
  Write {
   file_type png
   checkHashOnRead false
   name png_writer
-  xpos 600
-  ypos 309
+  xpos 440
+  ypos 469
   disable true
  }
- NoOp {
-  inputs 0
-  name burnInCtrl
-  tile_color 0xff5f00ff
-  gl_color 0xff5f00ff
-  xpos 520
-  ypos -331
-  addUserKnob {20 User}
-  addUserKnob {7 fontsize l "Font Size" R 0 100}
-  fontsize {{"\[value root.height]/30 / (switch.which+1)"}}
-  addUserKnob {7 bleed l Bleed R 5 50}
-  bleed 20
- }
-push $N2782c000
+push $N2ffc6400
  Reformat {
   type "to box"
   box_width 1920
@@ -370,10 +461,10 @@ push $N2782c000
   resize fit
   black_outside true
   name mov_1080
-  xpos 324
-  ypos 69
+  xpos 120
+  ypos 149
  }
-push $N2782c000
+push $N2ffc6400
  Reformat {
   type "to box"
   box_width 1280
@@ -382,15 +473,21 @@ push $N2782c000
   resize fit
   black_outside true
   name mov_720
-  xpos 404
-  ypos 69
+  xpos 280
+  ypos 149
  }
  Switch {
   inputs 2
   which {{parent.format}}
   name Switch1
-  xpos 360
-  ypos 227
+  xpos 280
+  ypos 309
+ }
+ Remove {
+  channels alpha
+  name Remove2
+  xpos 280
+  ypos 381
  }
  Write {
   file_type mov
@@ -407,20 +504,48 @@ push $N2782c000
   mov64_b_frames 0
   checkHashOnRead false
   name mov_writer
-  xpos 360
-  ypos 309
+  xpos 280
+  ypos 469
   disable true
  }
  Output {
   name Output1
-  xpos 360
-  ypos 390
+  xpos 280
+  ypos 549
  }
-push $N204cdc00
+ Text2 {
+  inputs 0
+  font_size_toolbar 100
+  font_width_toolbar 100
+  font_height_toolbar 100
+  transforms {{0 2}
+    }
+  center {640 360}
+  group_animations {{0} imported: 0 selected: 0 items: "root transform/"}
+  animation_layers {{1 11 640 360 0 0 1 1 0 0 0 0}
+    }
+  name Text1
+  xpos 1560
+  ypos -379
+ }
+ NoOp {
+  inputs 0
+  name burnInCtrl
+  tile_color 0xff5f00ff
+  gl_color 0xff5f00ff
+  xpos 600
+  ypos -491
+  addUserKnob {20 User}
+  addUserKnob {7 fontsize l "Font Size" R 0 100}
+  fontsize {{"\[value root.height]/30 / (switch.which+1)"}}
+  addUserKnob {7 bleed l Bleed R 5 50}
+  bleed 20
+ }
+push $N2ef1a000
  Viewer {
-  frame_range 1-100
+  frame_range 991-1252
   name Viewer1
-  xpos 38
-  ypos 290
+  xpos 920
+  ypos -11
  }
 end_group

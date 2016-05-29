@@ -109,6 +109,8 @@ class PublishHook(Hook):
         # correctly!
         output_order = ["render", "quicktime"]
         tasks_by_output = {}
+        print "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+        print "tasks = {}".format(tasks)
         for task in tasks:
             output_name = task["output"]["name"]
             tasks_by_output.setdefault(output_name, list()).append(task)
@@ -293,14 +295,14 @@ class PublishHook(Hook):
         publish_template = self.__write_node_app.get_node_publish_template(write_node)
         tank_type = self.__write_node_app.get_node_tank_type(write_node)
 
+                            #
+                            # # Rewriting the publishing template in the case of comp task
+                            # if render_template.get_fields(render_files[0])["Step"] == "Comp":
+                            #     import sgtk
+                            #     tk = sgtk.sgtk_from_path(published_script_path)
+                            #     # Get the nuke published area
+                            #     publish_template = tk.templates["nuke_shot_render_pub_online"]
 
-        # Rewriting the publishing template in the case of comp task
-        if render_template.get_fields(render_files[0])["Step"] == "Comp":
-            import sgtk
-            tk = sgtk.sgtk_from_path(published_script_path)
-            # Get the nuke published area
-            publish_template = tk.templates["nuke_shot_render_pub_online"]
-        
         # publish (copy files):
         
         progress_cb(25, "Copying files")
@@ -328,9 +330,6 @@ class PublishHook(Hook):
         # use the render path to work out the publish 'file' and name:
         render_path_fields = render_template.get_fields(render_path)
         render_path_fields["TankType"] = tank_type
-        #
-
-        #
         publish_path = publish_template.apply_fields(render_path_fields)
 
         #
@@ -356,7 +355,7 @@ class PublishHook(Hook):
             
         # register the publish:
         progress_cb(95.0, "Finding read dependencies", task)
-        dependencies = self._nuke_find_script_dependencies()
+        #dependencies = self._nuke_find_script_dependencies()
         sg_publish = self._register_publish(publish_path,
                                             publish_name,
                                             sg_task,
@@ -364,7 +363,7 @@ class PublishHook(Hook):
                                             tank_type,
                                             comment,
                                             thumbnail_path,
-                                            dependencies
+                                            [published_script_path]
                                             )
 
         return sg_publish, thumbnail_path

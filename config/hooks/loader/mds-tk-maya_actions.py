@@ -12,7 +12,9 @@
 Hook that loads defines all the available actions, broken down by publish type. 
 """
 import sgtk
+import tank
 import os
+import re
 import pymel.core as pm
 import maya.cmds as cmds
 import maya.mel as mel
@@ -94,7 +96,26 @@ class MayaActions(HookBaseClass):
                 action_instances.append( {"name": "udim_texture_node",
                                           "params": None, 
                                           "caption": "Create Texture Node", 
-                                          "description": "Creates a file texture node for the selected item.."} )    
+                                          "description": "Creates a file texture node for the selected item.."} )
+
+        # Edited by Chet May 2016
+        # (Project: KittenWitch)
+        # ========================================================================
+        # Created two separate checks to determine of the object being referenced in
+        # should be matched to a version link or a master link.
+
+        if "reference_version" in actions:
+            action_instances.append({"name": "reference version",
+                                     "params": "version",
+                                     "caption": "Create Reference To Version Cache",
+                                     "description": "This will add the item to the scene as a standard reference."})
+
+        if "reference_master" in actions:
+            action_instances.append({"name": "reference master",
+                                     "params": "master",
+                                     "caption": "Create Reference To Master Cache",
+                                     "description": "This will add the item to the scene as a standard reference."})
+
         return action_instances
 
     def execute_action(self, name, params, sg_publish_data):
@@ -109,16 +130,17 @@ class MayaActions(HookBaseClass):
         """
         app = self.parent
 
-        print "sg_publish_data {}".format(sg_publish_data)
-
         app.log_debug("Execute action called for action %s. "
                       "Parameters: %s. Publish Data: %s" % (name, params, sg_publish_data))
 
         # resolve path
         path = self.get_publish_path(sg_publish_data)
         
-        if name == "reference":
+        if name == "reference" or name == "reference version" or name == "reference master":
             self._create_reference(path, sg_publish_data)
+            print "sg_publish_data = {}".format(sg_publish_data)
+            if sg_publish_data["published_file_type"]["name"] == "Yeti Sim Nodes" and name == "reference master":
+                self._connect_master_yeti_cache(sg_publish_data)
 
         if name == "import":
             self._do_import(path, sg_publish_data)
@@ -128,6 +150,9 @@ class MayaActions(HookBaseClass):
             
         if name == "udim_texture_node":
             self._create_udim_texture_node(path, sg_publish_data)
+
+
+
                         
            
     ##############################################################################################################
@@ -161,20 +186,53 @@ class MayaActions(HookBaseClass):
             namespace = ":"
 
         ref = pm.system.createReference(path,
-                                      loadReferenceDepth= "all",
-                                      mergeNamespacesOnClash=False,
-                                      namespace=namespace)
+                                        loadReferenceDepth= "all",
+                                        mergeNamespacesOnClash=False,
+                                        namespace=namespace)
 
         # Load the shaders into scene
         if any(x in path for x in ["sculpt","surface"]):
             self._import_published_shaders(path,ref)
          #Hack to stop reference also being loaded - as file is not empty anymore
-            cmds.file(path,removeReference=True)
+            cmds.file(path, removeReference=True)
 
         # Edited by Chet May 2016
         # (Project: KittenWitch)
         # Look for yeti nodes in the scene and reconnect them to their objects.
-        self._connect_yeti_fur()
+
+        if sg_publish_data["published_file_type"]["name"] == "Yeti Fur Nodes":
+            self._connect_yeti_fur()
+
+    # Edited by Chet May 2016
+    # (Project: KittenWitch)
+    # Helper method to change the cache files from the version cache to the master
+    # cache.
+
+    def _connect_master_yeti_cache(self, sg_publish_data):
+        name_space = os.path.splitext(sg_publish_data["code"])[0]
+        objs = cmds.ls(name_space + ":*")
+        for i in objs:
+            if cmds.objectType(i, isType="pgYetiMaya"):
+                cache = cmds.getAttr("%s.%s" % (i, "cacheFileName"))
+                cahce_file_name = os.path.basename(cache)
+
+                scene_name = cmds.file(query=True, sn=True)
+                tk = tank.tank_from_path(scene_name)
+                cache_template = tk.templates["maya_shot_yeti_cache"]
+                master_template = tk.templates["maya_shot_yeti_master_cache"]
+                fields = cache_template.get_fields(cache, ["version"])
+
+                master_cache_dir = master_template.apply_fields(fields)
+                regex = r"(.*)v(\d+)"
+                match = re.search(regex, os.path.basename(cache))
+
+                cache_file_start = match.group(1)
+                cache_file_end = cahce_file_name.replace(match.group(0), "")
+                cahce_file_name = cache_file_start + cache_file_end[1:]
+                cahce_file_name = master_cache_dir + "\\" + cahce_file_name.replace("_yeticache", "_yetiMasterCache")
+                cmds.setAttr("%s.%s" % (i, "cacheFileName"),
+                             cahce_file_name,
+                             type="string")
 
     # Edited by Chet May 2016
     # (Project: KittenWitch)
@@ -186,8 +244,6 @@ class MayaActions(HookBaseClass):
 
     def _connect_yeti_fur(self):
 
-        print "Connecting Yeti Nodes"
-
         # get all the yeti nodes in the scene
         objs = cmds.ls(type='pgYetiMaya', transforms=True)
         objs = objs + cmds.ls(type='pgYetiGroom', transforms=True)
@@ -195,6 +251,9 @@ class MayaActions(HookBaseClass):
         for i in objs:
             if cmds.objectType(i, isType='pgYetiMaya') or cmds.objectType(i, isType='pgYetiGroom'):
                 yeti_nodes.append(i)
+
+        # look for the connectedMeshName attribute and
+        # call the yeti functions to connect pgYetiMaya and pgYetiGroom nodes
         if len(yeti_nodes) > 0:
             for i in yeti_nodes:
                 transform = cmds.listRelatives(i, p=True)[0]
@@ -202,7 +261,6 @@ class MayaActions(HookBaseClass):
 
                 for attribute in attributes:
                     if "connectedMeshName" in attribute:
-                        print attribute
                         meshName = cmds.getAttr("%s.%s" % (transform, attribute))
                         # Define the command to run if the yeti node is a pgYetiMaya Node
                         if cmds.objectType(i, isType="pgYetiMaya"):

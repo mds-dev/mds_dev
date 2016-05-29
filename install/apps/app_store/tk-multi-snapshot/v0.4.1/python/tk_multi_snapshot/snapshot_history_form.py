@@ -41,8 +41,9 @@ class SnapshotHistoryForm(QtGui.QWidget):
         self._ui.snapshot_list.action_requested.connect(self._on_restore)
         self._ui.restore_btn.clicked.connect(self._on_restore)
         
-#Edited by Chet
-#Add delete button
+# Edited by Chet April 2016
+# Project: Kitten Witch
+# Add delete button
         self._ui.delete_btn.clicked.connect(self._on_delete_btn_clicked)
 
         self._ui.snapshot_btn.clicked.connect(self._on_snapshot_btn_clicked)

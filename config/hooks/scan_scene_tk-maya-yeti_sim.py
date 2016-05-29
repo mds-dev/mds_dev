@@ -68,7 +68,6 @@ class ScanSceneHook(Hook):
         # create the primary item - this will match the primary output 'scene_item_type':            
         items.append({"type": "work_file", "name": name})
 
-
         # Added by Chetan Patel
         # May 2016 (KittenWitch Project)
         # ------------------------------------------------
@@ -76,56 +75,18 @@ class ScanSceneHook(Hook):
         # ------------------------------------------------
 
         objs = cmds.ls(type='pgYetiMaya', transforms=True)
-        objs = objs + cmds.ls(type='pgYetiGroom', transforms=True)
         yeti_nodes = []
         for i in objs:
-            if cmds.objectType(i, isType='pgYetiMaya') or cmds.objectType(i, isType='pgYetiGroom'):
+            if cmds.objectType(i, isType='pgYetiMaya'):
                 yeti_nodes.append(i)
 
         # Added by Chetan Patel
         # May 2016 (KittenWitch Project)
         # ------------------------------------------------
-        #        select and group the yeti nodes
+        # add the yeti nodes to the publish tasks
         # ------------------------------------------------
 
-        yeti_group = self.__group_yeti_nodes(yeti_nodes)
-
-        # Added by Chetan Patel
-        # May 2016 (KittenWitch Project)
-        # ------------------------------------------------
-        # add the group of yeti nodes to the publish tasks
-        # ------------------------------------------------
-
-        items.append({"type": "yeti_node", "name": yeti_group})
+        for i in yeti_nodes:
+            items.append({"type": "yeti_sim_nodes", "name": i})
         return items
 
-    # Added by Chetan Patel
-    # May 2016 (KittenWitch Project)
-    # ------------------------------------------------
-    # helper method to group the yeti nodes
-    # ------------------------------------------------
-    def __group_yeti_nodes(self, yetinodes):
-
-        #define the group from the current shotgun ass
-        scene_name = cmds.file(query=True, sn=True)
-        tk = tank.tank_from_path(scene_name)
-        templ = tk.template_from_path(scene_name)
-        fields = templ.get_fields(scene_name)
-
-        group_name = fields['Asset'] + "_yetiNodes_v" + str(fields['version']).zfill(3)
-        print group_name
-        #ungroup any previous yeti group exports
-        objs = cmds.ls(transforms=True)
-        for i in objs:
-            if "_yetiNodes_v" in i:
-                cmds.select(i)
-                cmds.ungroup()
-
-        #select the top group yeti nodes to maintain hierarchy
-        nodes = []
-        for i in yetinodes:
-            p = cmds.listRelatives(i, parent=True, fullPath=True)
-            nodes.append(p[0].split('|')[1])
-
-        cmds.select(nodes)
-        return cmds.group(cmds.ls(sl=True), name=group_name, relative=True)

@@ -109,7 +109,8 @@ class PrimaryPrePublishHook(Hook):
             
         # validate it:
         scene_errors = self._validate_work_file(scene_file, work_template, task["output"], progress_cb)
-        
+
+
         progress_cb(100)
           
         return scene_errors

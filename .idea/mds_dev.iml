@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
+    <content url="file:$MODULE_DIR$/../../../../..//$MODULE_DIR$" />
+    <content url="file:P:/../..//P:/Pipeline/development/mds_dev" />
+    <content url="file:P:/../../productions/boad/Pipeline/development/mds_dev" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="yetistuff" />
+    <orderEntry type="module" module-name="kittenwitch" />
+    <orderEntry type="module" module-name="quickcolorchanger" />
+    <orderEntry type="module" module-name="kittenwitch" />
+    <orderEntry type="module" module-name="kittenwitch" />
+    <orderEntry type="module" module-name="kittenwitch" />
+    <orderEntry type="module" module-name="maya" />
+    <orderEntry type="module" module-name="maya" />
+    <orderEntry type="module" module-name="shotgun_default" />
+    <orderEntry type="module" module-name="shotgun_default" />
+  </component>
+  <component name="TestRunnerService">
+    <option name="PROJECT_TEST_RUNNER" value="Unittests" />
   </component>
 </module>

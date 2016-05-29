@@ -9,7 +9,8 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
 import os
-import nuke
+import maya.cmds as cmds
+import maya.mel as mel
 
 import tank
 from tank import Hook
@@ -38,7 +39,7 @@ class ScanSceneHook(Hook):
                             
                             description:    String
                                             Description of the item to use in the UI
-                                                                             
+                                            
                             selected:       Bool
                                             Initial selected state of item in the UI.  
                                             Items are selected by default.
@@ -47,43 +48,49 @@ class ScanSceneHook(Hook):
                                             Required state of item in the UI.  If True then
                                             item will not be deselectable.  Items are not
                                             required by default.
-                                                       
+                                            
                             other_params:   Dictionary
                                             Optional dictionary that will be passed to the
                                             pre-publish and publish hooks
                         }
-        """
-        
+        """   
+
         items = []
         
-        # get current script:
-        script_name = nuke.root().name()
-        if script_name == "Root":
+        # get the main scene:
+        scene_name = cmds.file(query=True, sn=True)
+        if not scene_name:
             raise TankError("Please Save your file before Publishing")
         
-        script_file = script_name.replace("/", os.path.sep)
-        script_name = os.path.basename(script_file)
-        items.append({"type": "work_file", "name": script_name})
-        
-        # find tk-nuke-writenode app
-        app = tank.platform.current_engine().apps.get("tk-nuke-writenode")
-        if app:
-            # Find tank write nodes:
-            write_nodes = app.get_write_nodes()
+        scene_path = os.path.abspath(scene_name)
+        name = os.path.basename(scene_path)
 
-            for write_node in write_nodes:
-                # use app to get node details:
-                name = app.get_node_name(write_node)
-                profile_name = app.get_node_profile_name(write_node)
-                is_disabled = write_node.knob("disable").value()
-                
-                items.append({"name":"Shotgun Write Node: %s" % name,
-                              "type":"write_node",
-                              "description":"Render Profile: %s" % profile_name,
-                              "selected":not is_disabled,
-                              "other_params":{"node":write_node}})
+        # create the primary item - this will match the primary output 'scene_item_type':            
+        items.append({"type": "work_file", "name": name})
 
-        print "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
-        print "items = {}".format(items)
-                 
+
+        # Added by Chetan Patel
+        # May 2016 (KittenWitch Project)
+        # ------------------------------------------------
+        # Find all the yeti nodes
+        # ------------------------------------------------
+
+        objs = cmds.ls(type='pgYetiMaya', transforms=True)
+        objs = objs + cmds.ls(type='pgYetiGroom', transforms=True)
+        yeti_nodes = []
+        for i in objs:
+            if cmds.objectType(i, isType='pgYetiMaya') or cmds.objectType(i, isType='pgYetiGroom'):
+                yeti_nodes.append(i)
+
+
+
+        # Added by Chetan Patel
+        # May 2016 (KittenWitch Project)
+        # ------------------------------------------------
+        # add the yeti nodes to the publish tasks
+        # ------------------------------------------------
+
+        for i in yeti_nodes:
+            items.append({"type": "yeti_fur_nodes", "name": i})
         return items
+

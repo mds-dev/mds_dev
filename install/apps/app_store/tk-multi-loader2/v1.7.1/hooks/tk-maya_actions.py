@@ -164,7 +164,15 @@ class MayaActions(HookBaseClass):
 
         # Load the shaders into scene
         if any(x in path for x in ["sculpt","surface"]):
+            print "*********************************************"
+            print "path is = ".format(path)
             self._import_published_shaders(path,ref)
+            #Hack to stop reference also being loaded - as file is not empty anymore
+            cmds.file(path,removeReference=True)
+
+
+
+
 
     def _import_published_shaders(self,path,ref):
         tk = sgtk.sgtk_from_path(path)
@@ -175,6 +183,8 @@ class MayaActions(HookBaseClass):
         # Get the data folder
         dataTemplate = tk.templates["maya_asset_data_publish"]
         published_data_folder = dataTemplate.apply_fields(fields)
+        print "******************************"
+        print "published_data_folder = ".format(published_data_folder)
 
         # Init the ShaderAPI
         reload(libShader)

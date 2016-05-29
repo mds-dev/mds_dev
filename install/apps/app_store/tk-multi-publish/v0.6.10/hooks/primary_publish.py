@@ -169,7 +169,7 @@ class PrimaryPublishHook(Hook):
             publishObj = AlembicPublish(not emptyScene)
         elif fields["Step"] in ["surface"]:
             self.parent.log_debug("Surface Maya Publish")
-            publishObj = SurfacePublish()
+            publishObj = SurfacePublish(emptyScene)
         elif fields["Step"] in ["FX"] and fields.has_key("Asset"):
             self.parent.log_debug("FX Maya Publish")
             publishObj = FXPublish()
@@ -186,8 +186,14 @@ class PrimaryPublishHook(Hook):
         publishObj.publish()
 
 
+
         # work out publish name:
         publish_name = self._get_publish_name(publish_path, publish_template, fields)
+
+        print "fields = {}".format(fields)
+        print "task = {}".format(task)
+        print "publish_template = {}".format(publish_template)
+        print "publish_name = {}".format(publish_name)
 
         # finally, register the publish:
         progress_cb(75.0, "Registering the publish")
@@ -598,53 +604,68 @@ class PrimaryPublishHook(Hook):
         publish_path = publish_template.apply_fields(fields)
 
         # Pritish Modification from here on
-        if fields['Step'] in ['Light']:
-            mayaInfo = self._nuke_find_script_dependencies()
-            if not mayaInfo:
-                raise TankError("No valid read nodes found")
+        # if fields['Step'] in ['Light']:
+        #     mayaInfo = self._nuke_find_script_dependencies()
+        #     if not mayaInfo:
+        #         raise TankError("No valid read nodes found")
+        #
+        #     # Only Publish the nuke script in case of Comp and render task
+        #     if os.path.exists(publish_path):
+        #         raise TankError("The published file named '%s' already exists!" % publish_path)
+        #     # save the scene:
+        #     progress_cb(25.0, "Saving the script")
+        #     self.parent.log_debug("Saving the Script...")
+        #     nuke.scriptSave()
+        #
+        #     # copy the file:
+        #     progress_cb(50.0, "Copying the file")
+        #     try:
+        #         publish_folder = os.path.dirname(publish_path)
+        #         self.parent.ensure_folder_exists(publish_folder)
+        #         self.parent.log_debug("Copying %s --> %s..." % (script_path, publish_path))
+        #         self.parent.copy_file(script_path, publish_path, task)
+        #     except Exception, e:
+        #         raise TankError("Failed to copy file from %s to %s - %s" % (script_path, publish_path, e))
+        #
+        #     progress_cb(65.0, "Backing up maya file")
+        #     # Backing up the source maya file
+        #     self._backup_maya_file_(mayaInfo["SourceMayaFile"], fields["version"], task)
+        #
+        # work out name for publish:
+        publish_name = self._get_publish_name(publish_path, publish_template, fields)
+        #
+        # finally, register the publish:
 
-            # Only Publish the nuke script in case of Comp and render task
-            if os.path.exists(publish_path):
-                raise TankError("The published file named '%s' already exists!" % publish_path)
-            # save the scene:
-            progress_cb(25.0, "Saving the script")
-            self.parent.log_debug("Saving the Script...")
-            nuke.scriptSave()
+        print "******************************************************************"
+        print "******************************************************************"
+        print "publish_path = {}".format(publish_path)
+        print ""
+        print "publish_name = {}".format(publish_name)
+        print ""
+        print "sg_task = {}".format(sg_task)
+        print ""
+        print "fields = {}".format(fields)
+        print ""
+        print "output = {}".format(output)
 
-            # copy the file:
-            progress_cb(50.0, "Copying the file")
-            try:
-                publish_folder = os.path.dirname(publish_path)
-                self.parent.ensure_folder_exists(publish_folder)
-                self.parent.log_debug("Copying %s --> %s..." % (script_path, publish_path))
-                self.parent.copy_file(script_path, publish_path, task)
-            except Exception, e:
-                raise TankError("Failed to copy file from %s to %s - %s" % (script_path, publish_path, e))
+        mayaInfo = {"Dependencies": "Bob's your uncle"}
+        progress_cb(75.0, "Registering the publish")
+        self._register_publish(publish_path,
+                               publish_name,
+                               sg_task,
+                               fields["version"],
+                               output["tank_type"],
+                               comment,
+                               thumbnail_path,
+                               mayaInfo["Dependencies"]
+                               )
+        # else:
+        nukeShotBackupTemplate = self.parent.tank.templates["nuke_shot_backup_file"]
+        fields["task_name"] = sg_task["content"]
+        nukeShotBackupPath = nukeShotBackupTemplate.apply_fields(fields)
+        progress_cb(75.0, "Backing up Nuke Script")
 
-            progress_cb(65.0, "Backing up maya file")
-            # Backing up the source maya file
-            self._backup_maya_file_(mayaInfo["SourceMayaFile"], fields["version"], task)
-
-            # work out name for publish:
-            publish_name = self._get_publish_name(publish_path, publish_template, fields)
-
-            # finally, register the publish:
-            progress_cb(75.0, "Registering the publish")
-            self._register_publish(publish_path,
-                                   publish_name,
-                                   sg_task,
-                                   fields["version"],
-                                   output["tank_type"],
-                                   comment,
-                                   thumbnail_path,
-                                   mayaInfo["Dependencies"])
-        else:
-            nukeShotBackupTemplate = self.parent.tank.templates["nuke_shot_backup_file"]
-            fields["task_name"] = sg_task["content"]
-            nukeShotBackupPath = nukeShotBackupTemplate.apply_fields(fields)
-            progress_cb(75.0, "Backing up Nuke Script")
-
-            self.parent.copy_file(script_path, nukeShotBackupPath, task)
+        self.parent.copy_file(script_path, nukeShotBackupPath, task)
 
         progress_cb(100)
         return publish_path

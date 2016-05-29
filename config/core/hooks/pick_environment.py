@@ -41,9 +41,24 @@ class PickEnvironment(Hook):
             if context.entity["type"] == "Sequence":
                 return "sequence"            
 
-            
         if context.entity and context.step:
             # we have a step and an entity
+            print "======================================================================"
+            print "context = {}".format(context)
+            print "======================================================================"
+            print "context.step = {}".format(context.step)
+            print "context.entity = {}".format(context.entity)
+            print "======================================================================"
+            print "context.entity[type] = {}".format(context.entity["type"])
+            print "context.step[name] = {}".format(context.step["name"])
+            print "======================================================================"
+
+            if context.entity["type"] == "Asset" and context.step["name"] == "Fur":
+                print "entering fur step"
+                return "fur_step"
+            if context.entity["type"] == "Shot" and context.step["name"] == "Fur":
+                print "entering fursim step"
+                return "fursim_step"
             if context.entity["type"] == "Shot":
                 return "shot_step"
             if context.entity["type"] == "Asset":

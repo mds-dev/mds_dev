@@ -11,7 +11,8 @@ engines:
           Maya Scene: [reference, import]
           Photoshop Image: [texture_node]
           Rendered Image: [texture_node]
-        actions_hook: '{self}/tk-maya_actions.py'
+          Yeti Sim Nodes : [reference_version, reference_master]
+        actions_hook: '{config}/loader/mds-tk-maya_actions.py'
         download_thumbnails: true
         entities:
         - caption: Assets

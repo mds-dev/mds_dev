@@ -144,7 +144,8 @@ paths:
     sequence_root: sequences/{Sequence}
     editorial_root: editorial/
 
-
+    #Added by chet for nuke favourite directories.
+    plates_root: footage/plates/{Sequence}/{Shot}
 
     ##########################################################################################
     # Project level paths 
@@ -267,8 +268,17 @@ paths:
         definition: 'sequences/{Sequence}/{Shot}/alembics/{Shot}_[{name}].abc'
         root_name: 'primary'
 
+    maya_shot_yeti_nodes:
+        definition: '@shot_root/publish/maya/data/yeti/nodes/{Shot}_{Step}_v{version}.ma'
+        root_name: 'primary'
 
+    maya_shot_yeti_cache:
+        definition: '@shot_root/publish/maya/data/yeti/cache/v{version}/'
+        root_name: 'primary'
 
+    maya_shot_yeti_master_cache:
+        definition: '@shot_root/publish/maya/data/yeti/cache/master/'
+        root_name: 'primary'
 
     #
     # Houdini
@@ -540,6 +550,12 @@ paths:
     maya_asset_data_publish:
         definition: '@asset_root/publish/maya/data/{Asset}_{Step}_v{version}'
         root_name: 'primary'
+
+    # The location of the yeti node publish
+    maya_asset_yeti_nodes:
+        definition: '@asset_root/publish/maya/data/yeti/{Asset}_{Step}_v{version}.ma'
+        root_name: 'primary'
+
     #
     # Houdini
     #

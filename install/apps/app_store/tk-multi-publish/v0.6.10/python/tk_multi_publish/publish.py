@@ -346,7 +346,7 @@ class PublishHandler(object):
         """
         Do pre-publish pass on tasks using the pre-publish hook
         """
-        
+
         # do pre-publish of primary task:
         primary_task.pre_publish_errors = self._app.execute_hook("hook_primary_pre_publish",  
                                                                 task=primary_task.as_dictionary(), 

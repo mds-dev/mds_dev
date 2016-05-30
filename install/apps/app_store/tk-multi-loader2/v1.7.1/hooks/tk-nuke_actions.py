@@ -165,7 +165,7 @@ class NukeActions(HookBaseClass):
         :param sg_publish_data: Shotgun data dictionary with all the standard publish fields.        
         """        
         import nuke
-        
+
         (_, ext) = os.path.splitext(path)
 
         valid_extensions = [".png", 
@@ -188,7 +188,7 @@ class NukeActions(HookBaseClass):
 
         # find the sequence range if it has one:
         seq_range = self._find_sequence_range(path)
-        
+
         # create the read node
         if seq_range:
             nuke.nodes.Read(file=path, first=seq_range[0], last=seq_range[1])

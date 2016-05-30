@@ -17,6 +17,8 @@ import tank
 from tank import Hook
 from tank import TankError
 
+import os.path
+
 class PublishHook(Hook):
     """
     Single hook that implements publish functionality for secondary tasks
@@ -91,9 +93,12 @@ class PublishHook(Hook):
                                         }
         """
         results = []
-        
+
+
         # publish all tasks:
         for task in tasks:
+            print "()()()()()()()()()()()()()()()()()()"
+            print "task = {}".format(task)
             item = task["item"]
             output = task["output"]
             errors = []
@@ -104,10 +109,23 @@ class PublishHook(Hook):
             # publish alembic_cache output
             if output["name"] == "alembic_cache":
                 try:
-                   self.__publish_alembic_cache(item, output, work_template, primary_publish_path, 
+                    self.__publish_alembic_cache(item, output, work_template, primary_publish_path,
                                                          sg_task, comment, thumbnail_path, progress_cb)
                 except Exception, e:
-                   errors.append("Publish failed - %s" % e)
+                    errors.append("Publish failed - %s" % e)
+
+# Added by Chetan Patel
+# May 2016 (KittenWitch Project)
+# ----------------------------------------------------
+# A Searching for maya_rendered_images to publish
+# Based on the two Two Guys and a Toolkit
+# ----------------------------------------------------
+            elif item["type"] == "maya_rendered_image":
+                try:
+                    self.__publish_rendered_images(item, output, work_template, primary_publish_path,
+                                                 sg_task, comment, thumbnail_path, progress_cb)
+                except Exception, e:
+                    errors.append("Publish failed - %s" % e)
             else:
                 # don't know how to publish this output types!
                 errors.append("Don't know how to publish this item!")
@@ -229,3 +247,94 @@ class PublishHook(Hook):
         
         return (start, end)
 
+# Added by Chetan Patel
+# May 2016 (KittenWitch Project)
+# ----------------------------------------------------
+# A Method for publishing rendered images from maya
+# Based on the two Two Guys and a Toolkit
+# ----------------------------------------------------
+
+    def __publish_rendered_images(self, item, output, work_template, primary_publish_path,
+                                      sg_task, comment, thumbnail_path, progress_cb):
+
+
+        """
+        Publish rendered images and register with Shotgun.
+
+        :param item:                    The item to publish
+        :param output:                  The output definition to publish with
+        :param work_template:           The work template for the current scene
+        :param primary_publish_path:    The path to the primary published file
+        :param sg_task:                 The Shotgun task we are publishing for
+        :param comment:                 The publish comment/description
+        :param thumbnail_path:          The path to the publish thumbnail
+        :param progress_cb:             A callback that can be used to report progress
+        """
+
+        # determine the publish info to use
+        #
+        progress_cb(10, "Determining publish details")
+
+        # get the current scene path and extract fields from it
+        # using the work template:
+        scene_path = os.path.abspath(cmds.file(query=True, sn=True))
+        fields = work_template.get_fields(scene_path)
+        publish_version = fields["version"]
+        tank_type = output["tank_type"]
+
+        # this is pretty straight forward since the publish file(s) have
+        # already been created (rendered). We're really just populating the
+        # arguments to send to the sg publish file registration below.
+        publish_name = item["name"]
+
+        # we already determined the path in the scan_scene code. so just
+        # pull it from that dictionary.
+        other_params = item["other_params"]
+        render_path = other_params["path"]
+
+        # copy files
+        self.__copy_renders(render_path)
+
+        other_params["path"] = other_params["path"].replace("\\work\\", "\\publish\\")
+
+        render_path = render_path.replace("\\work\\", "\\publish\\")
+
+        # register the publish:
+        progress_cb(75, "Registering the publish")
+        args = {
+            "tk": self.parent.tank,
+            "context": self.parent.context,
+            "comment": comment,
+            "path": render_path,
+            "name": publish_name,
+            "version_number": publish_version,
+            "thumbnail_path": thumbnail_path,
+            "task": sg_task,
+            "dependency_paths": [primary_publish_path],
+            "published_file_type": tank_type
+        }
+        tank.util.register_publish(**args)
+
+# Added by Chetan Patel
+# May 2016 (KittenWitch Project)
+# --------------------------------------------------------
+# A helper method to copy rendered files from maya's work
+# area to the publishing area.
+# --------------------------------------------------------
+
+    def __copy_renders(self, render_path):
+
+        render_work_dir = os.path.dirname(render_path)
+        #swap the "\work\" string with "\publish\"
+        render_publish_dir = render_work_dir.replace("\\work\\", "\\publish\\")
+        render_files = os.listdir(render_work_dir)
+
+        for file in render_files:
+            if not os.path.exists(render_publish_dir):
+                old_umask = os.umask(0)
+                os.makedirs(render_publish_dir, 0777)
+                os.umask(old_umask)
+
+            with open(render_work_dir + "\\" + file, "rb") as fin:
+                with open(render_publish_dir + "\\" + file, "wb") as fout:
+                    shutil.copyfileobj(fin, fout, 1024 * 1024 * 10)

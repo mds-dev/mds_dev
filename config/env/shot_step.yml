@@ -55,7 +55,17 @@ engines:
         primary_publish_template: maya_shot_publish
         primary_scene_item_type: work_file
         primary_tank_type: Maya Scene
-        secondary_outputs: []
+        secondary_outputs:
+        - description: Copy renders from work area to publish area.
+          display_group: Renders
+          display_name: Rendered
+          icon: icons/publish_nuke_writenode.png
+          name: maya_rendered_image
+          publish_template: maya_shot_render_pub
+          required: true
+          scene_item_type: maya_rendered_image
+          selected: true
+          tank_type: Maya Rendered Image
         template_work: maya_shot_work
       tk-multi-screeningroom: '@launch_screeningroom'
       tk-multi-setframerange:
@@ -111,6 +121,7 @@ engines:
         action_mappings:
           Nuke Script: [script_import]
           Rendered Image: [read_node]
+          Maya Rendered Image: [read_node]
         actions_hook: '{self}/tk-nuke_actions.py'
         download_thumbnails: true
         entities:

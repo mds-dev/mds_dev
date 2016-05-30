@@ -249,13 +249,19 @@ paths:
         root_name: 'primary'
 
     # The location of published maya renders folder(Anim, Light)
-    maya_shot_render_folder:
-        definition:  '@shot_root/publish/maya/data/{Shot}_{Step}_v{version}/sequence'
-        root_name: 'primary'
+#    maya_shot_render_folder:
+#        definition:  '@shot_root/publish/maya/data/{Shot}_{Step}_v{version}/sequence'
+#        root_name: 'primary'
+
+
 
     # The location of published maya renders  (Maya render from Lighting)
-    maya_shot_render:
-        definition:  '@shot_root/publish/maya/data/{Shot}_{Step}_v{version}/sequence/{render_layer}/{Shot}_v{version}.{SEQ}.exr'
+    maya_shot_render_pub:
+        definition:  '@shot_root/publish/maya/images/v{version}/{render_layer}/{Shot}_{Step}_{render_layer}_v{version}.{SEQ}.exr'
+        root_name: 'primary'
+
+    maya_shot_render_folder:
+        definition:  '@shot_root/work/maya/images/v{version}/{render_layer}/{Shot}_{Step}_{render_layer}_v{version}.{SEQ}.exr'
         root_name: 'primary'
 
     # The location of published alembic caches (Anim)
@@ -404,14 +410,14 @@ paths:
         definition: '@shot_root/publish/nuke/{task_name}/v{version}/{Shot}_{Step}_{task_name}.{SEQ}.dpx'
         root_name: 'primary'
     nuke_shot_render_stereo:
-        definition: '@shot_root/work/nuke/images/{task_name}/v{version}/{Shot}_{Step}_{task_name}_v{version}.{SEQ}.exr'
+        definition: '@shot_root/work/nuke/images/v{version}/{Shot}_{Step}_v{version}.{SEQ}.exr'
         root_name: 'primary'
 #    nuke_shot_render_pub_stereo:
 #        definition: '@shot_root/publish/nuke/{task_name}/v{version}/{Shot}_{Step}_{task_name}_v{version}.{SEQ}.exr'
 #        root_name: 'primary'
 #   Roto, paint
     nuke_shot_render_pub_exr: 
-        definition: '@shot_root/publish/nuke/{task_name}/v{version}/{Shot}_{Step}_{task_name}_v{version}.{SEQ}.exr'
+        definition: '@shot_root/publish/nuke/v{version}/{Shot}_{Step}_v{version}.{SEQ}.exr'
         root_name: 'primary'
 
 #   Comp Publish

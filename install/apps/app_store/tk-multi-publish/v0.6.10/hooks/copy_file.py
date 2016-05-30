@@ -58,6 +58,18 @@ class CopyFile(Hook):
         if not os.path.isdir(dirname):            
             old_umask = os.umask(0)
             os.makedirs(dirname, 0777)
-            os.umask(old_umask)            
+            os.umask(old_umask)
 
-        shutil.copy(source_path, target_path)
+        # Edited by Chet May 2016
+        # Project: KittenWitch
+        # =================================================================
+        # Change the copy function to something with a bigger buffer size
+        # to speed up the snapshotting of larger files.
+
+        # original
+        #        shutil.copy(source_path, target_path)
+
+        # new call.
+        with open(source_path, "rb") as fin:
+            with open(target_path, "wb") as fout:
+                shutil.copyfileobj(fin, fout, 1024 * 1024 * 10)

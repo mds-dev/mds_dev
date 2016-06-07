@@ -129,8 +129,14 @@ def get_breakdown_items():
                 item["fields"] = fields
                 item["sg_data"] = None
 
+                # Added by Chetan Patel
+                # May 2016 (KittenWitch Project)
+                # ------------------------------------------------
+                # Disabled old code
+                # ------------------------------------------------
+
                 #PKD Don't show in the GUI
-                item["show_in_gui"] = (matching_template != app.tank.templates["maya_shot_render"])
+                #item["show_in_gui"] = (matching_template != app.tank.templates["maya_shot_render"])
 
                 # store the normalized fields in dict
                 items.append(item)

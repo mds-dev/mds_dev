@@ -17,6 +17,8 @@ import tank
 from tank import Hook
 from tank import TankError
 
+import subprocess
+
 import os.path
 
 class PublishHook(Hook):
@@ -94,11 +96,8 @@ class PublishHook(Hook):
         """
         results = []
 
-
         # publish all tasks:
         for task in tasks:
-            print "()()()()()()()()()()()()()()()()()()"
-            print "task = {}".format(task)
             item = task["item"]
             output = task["output"]
             errors = []
@@ -297,6 +296,9 @@ class PublishHook(Hook):
 
         other_params["path"] = other_params["path"].replace("\\work\\", "\\publish\\")
 
+        #change the thumbnail path to one created by nuke from the render layer
+        thumbnail_path = self._generate_render_layer_thumbnail(render_path)
+
         render_path = render_path.replace("\\work\\", "\\publish\\")
 
         # register the publish:
@@ -313,7 +315,58 @@ class PublishHook(Hook):
             "dependency_paths": [primary_publish_path],
             "published_file_type": tank_type
         }
+
         tank.util.register_publish(**args)
+
+        # Delete the thumbnail created by nuke
+        os.remove(thumbnail_path)
+
+# Added by Chetan Patel
+# May 2016 (KittenWitch Project)
+# ----------------------------------------------------
+# A To generate jpg thumbnails from the exr using
+# Nuke
+# ----------------------------------------------------
+    def _generate_render_layer_thumbnail(self, render_path):
+
+        nukePath = "C:\\apps\\nuke\\9.0v8\\Nuke9.0.exe"
+        scene_name = cmds.file(query=True, sn=True)
+        dir = os.path.dirname(scene_name)
+        pythonScript = dir + "/dummy.py"
+
+        img_dir = os.path.dirname(render_path)
+        render_files = os.listdir(img_dir)
+
+        count = 0
+        inImage = "Not found"
+
+        for img in render_files:
+            if count is int(len(render_files)/2):
+                inImage = img
+            count +=1
+
+        outImage = os.path.splitext(inImage)[0] + ".jpg"
+
+        frame = os.path.splitext(outImage)[0][-4:]
+
+        try:
+            f = open(pythonScript, "w")
+            f.write("r = nuke.nodes.Read(file = \"" + img_dir.replace("\\", "/") + "/" + inImage + "\")\n")
+            f.write("ref = nuke.createNode(\"Reformat\", \"type scale scale 0.3\")\n")
+            f.write("ref.setInput( 0, r )\n")
+            f.write("w = nuke.nodes.Write(file = \"" + dir.replace("\\", "/") + "/" + outImage + "\")\n")
+            f.write("w.setInput( 0, ref )\n")
+            f.write("nuke.execute(\"Write1\", " + frame + " , " + frame + ")")
+            f.close()
+        except ValueError:
+            print "======= Error: {}".format(ValueError)
+
+        subprocess.call("c:\\apps\\nuke\\9.0v8\\nuke9.0.exe -t -i " + pythonScript)
+        #remove the pythonscript
+        os.remove(pythonScript)
+
+        return dir.replace("\\", "/") + "/" + outImage
+
 
 # Added by Chetan Patel
 # May 2016 (KittenWitch Project)

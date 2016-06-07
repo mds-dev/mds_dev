@@ -79,13 +79,26 @@ class PrePublishHook(Hook):
             item = task["item"]
             output = task["output"]
             errors = []
-        
+
             # report progress:
             progress_cb(0, "Validating", task)
         
             # pre-publish alembic_cache output
             if output["name"] == "alembic_cache":
                 errors.extend(self.__validate_item_for_alembic_cache_publish(item))
+
+# Added by Chetan Patel
+# May 2016 (KittenWitch Project)
+# --------------------------------------------------------=
+# Add validation for publishing rendered images from maya
+# No validation currently implemented. Prints empty string
+# but a check is required or shotgun will error at this
+# stage of publishing with "Don't know how to publish this item!"
+# -------------------------------------------------------
+
+
+            elif output["name"] == "maya_rendered_image":
+                print ""
             else:
                 # don't know how to publish this output types!
                 errors.append("Don't know how to publish this item!")            
@@ -118,5 +131,4 @@ class PrePublishHook(Hook):
             errors.append("The scene does not contain any geometry!")
     
         # finally return any errors
-        return errors    
-    
+        return errors

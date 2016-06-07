@@ -109,8 +109,6 @@ class PublishHook(Hook):
         # correctly!
         output_order = ["render", "quicktime"]
         tasks_by_output = {}
-        print "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-        print "tasks = {}".format(tasks)
         for task in tasks:
             output_name = task["output"]["name"]
             tasks_by_output.setdefault(output_name, list()).append(task)
@@ -332,9 +330,6 @@ class PublishHook(Hook):
         render_path_fields["TankType"] = tank_type
         publish_path = publish_template.apply_fields(render_path_fields)
 
-        #
-
-            
         # construct publish name:
         publish_name = ""
         rp_name = render_path_fields.get("name")

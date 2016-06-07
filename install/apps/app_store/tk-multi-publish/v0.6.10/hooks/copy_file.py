@@ -72,4 +72,4 @@ class CopyFile(Hook):
         # new call.
         with open(source_path, "rb") as fin:
             with open(target_path, "wb") as fout:
-                shutil.copyfileobj(fin, fout, 1024 * 1024 * 10)
+                shutil.copyfileobj(fin, fout, 1024 * 1024 * 16)

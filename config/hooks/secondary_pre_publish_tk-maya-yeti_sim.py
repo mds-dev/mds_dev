@@ -135,6 +135,9 @@ class PrePublishHook(Hook):
         if not yeti_nodes:
             errors.append("The scene does not contain any Yeti nodes!")
 
+        # check that the namespace has been removed
+        if ":" in item["name"]:
+            errors.append("Found namespace: {}".format(item["name"]))
         # check that the yeti node being published has a cache and the mode correctly set
         if cmds.objectType(item["name"], isType='pgYetiMaya'):
             cachePath = cmds.getAttr("%s.%s" % (item["name"], "cacheFileName"))

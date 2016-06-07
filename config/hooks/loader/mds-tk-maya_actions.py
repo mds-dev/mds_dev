@@ -209,29 +209,33 @@ class MayaActions(HookBaseClass):
     # cache.
 
     def _connect_master_yeti_cache(self, sg_publish_data):
+        print "connecting master 2"
         name_space = os.path.splitext(sg_publish_data["code"])[0]
         objs = cmds.ls(name_space + ":*")
         for i in objs:
+            print "i = {}".format(i)
             if cmds.objectType(i, isType="pgYetiMaya"):
                 cache = cmds.getAttr("%s.%s" % (i, "cacheFileName"))
-                cahce_file_name = os.path.basename(cache)
-
+                cache_file_name = os.path.basename(cache)
+                print "cache_file_name = {}".format(cache_file_name)
+                print "cache = {}".format(cache)
                 scene_name = cmds.file(query=True, sn=True)
                 tk = tank.tank_from_path(scene_name)
                 cache_template = tk.templates["maya_shot_yeti_cache"]
                 master_template = tk.templates["maya_shot_yeti_master_cache"]
                 fields = cache_template.get_fields(cache, ["version"])
-
                 master_cache_dir = master_template.apply_fields(fields)
                 regex = r"(.*)v(\d+)"
                 match = re.search(regex, os.path.basename(cache))
 
+
                 cache_file_start = match.group(1)
-                cache_file_end = cahce_file_name.replace(match.group(0), "")
-                cahce_file_name = cache_file_start + cache_file_end[1:]
-                cahce_file_name = master_cache_dir + "\\" + cahce_file_name.replace("_yeticache", "_yetiMasterCache")
+                cache_file_end = cache_file_name.replace(match.group(0), "")
+                cache_file_name = cache_file_start + cache_file_end[1:]
+                cache_file_name = master_cache_dir + "\\" + cache_file_name.replace("_yeticache", "_yetiMasterCache")
+                print "master cache = {}".format(cache_file_name)
                 cmds.setAttr("%s.%s" % (i, "cacheFileName"),
-                             cahce_file_name,
+                             cache_file_name,
                              type="string")
 
     # Edited by Chet May 2016

@@ -82,8 +82,5 @@ class ScanSceneHook(Hook):
                               "description":"Render Profile: %s" % profile_name,
                               "selected":not is_disabled,
                               "other_params":{"node":write_node}})
-
-        print "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
-        print "items = {}".format(items)
                  
         return items

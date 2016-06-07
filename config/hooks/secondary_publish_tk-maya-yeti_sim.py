@@ -278,6 +278,10 @@ class PublishHook(Hook):
         master_cache_path = master_cache_path.replace("\\", "/")
         for node in yeti_nodes:
             # get the name of the files
+            node_name = node
+            if ":" in node_name:
+                node_name = node_name.split(":")[1]
+
             path = cmds.getAttr("%s.%s" % (node, "cacheFileName"))
 
             # get the padding string
@@ -288,8 +292,8 @@ class PublishHook(Hook):
             dirname = os.path.dirname(path)
             cache_files = os.listdir(dirname)
             scenename = scenename.split("/")[-1].split(".")[0]
-            mastername = scenename[:-4] + node + "_yetiMasterCache."
-            scenename += "_" + node + "_yeticache."
+            mastername = scenename[:-4] + node_name + "_yetiMasterCache."
+            scenename += "_" + node_name + "_yeticache."
             for cacheFile in cache_files:
                 name = os.path.splitext(cacheFile)[0]
                 framenum = name[-int(padding_num):]

@@ -145,13 +145,6 @@ class PrimaryPublishHook(Hook):
         publish_template = output["publish_template"]
         publish_path = publish_template.apply_fields(fields)
 
-        print "========================================================="
-        print "output = {}".format(output)
-        print "fields = {}".format(fields)
-        print "publish_template = {}".format(publish_template)
-        print "publish_path = {}".format(publish_path)
-        print "========================================================="
-
         if os.path.exists(publish_path):
             raise TankError("The published file named '%s' already exists!" % publish_path)
 
@@ -185,15 +178,8 @@ class PrimaryPublishHook(Hook):
         publishObj.publish_template = publish_template
         publishObj.publish()
 
-
-
         # work out publish name:
         publish_name = self._get_publish_name(publish_path, publish_template, fields)
-
-        print "fields = {}".format(fields)
-        print "task = {}".format(task)
-        print "publish_template = {}".format(publish_template)
-        print "publish_name = {}".format(publish_name)
 
         # finally, register the publish:
         progress_cb(75.0, "Registering the publish")
@@ -603,6 +589,12 @@ class PrimaryPublishHook(Hook):
         publish_template = output["publish_template"]
         publish_path = publish_template.apply_fields(fields)
 
+        # Added by Chetan Patel
+        # May 2016 (KittenWitch Project)
+        # ------------------------------------------------
+        # Commented out old code
+        # ------------------------------------------------
+
         # Pritish Modification from here on
         # if fields['Step'] in ['Light']:
         #     mayaInfo = self._nuke_find_script_dependencies()
@@ -636,18 +628,6 @@ class PrimaryPublishHook(Hook):
         #
         # finally, register the publish:
 
-        print "******************************************************************"
-        print "******************************************************************"
-        print "publish_path = {}".format(publish_path)
-        print ""
-        print "publish_name = {}".format(publish_name)
-        print ""
-        print "sg_task = {}".format(sg_task)
-        print ""
-        print "fields = {}".format(fields)
-        print ""
-        print "output = {}".format(output)
-
         mayaInfo = {"Dependencies": "Bob's your uncle"}
         progress_cb(75.0, "Registering the publish")
         self._register_publish(publish_path,
@@ -666,7 +646,6 @@ class PrimaryPublishHook(Hook):
         progress_cb(75.0, "Backing up Nuke Script")
 
         self.parent.copy_file(script_path, nukeShotBackupPath, task)
-
         progress_cb(100)
         return publish_path
 

@@ -16,6 +16,8 @@ import maya.mel as mel
 import tank
 from tank import Hook
 from tank import TankError
+from tank_vendor import yaml
+import sgtk
 
 import subprocess
 
@@ -296,8 +298,8 @@ class PublishHook(Hook):
 
         other_params["path"] = other_params["path"].replace("\\work\\", "\\publish\\")
 
-        #change the thumbnail path to one created by nuke from the render layer
-        thumbnail_path = self._generate_render_layer_thumbnail(render_path)
+        # change the thumbnail path to one created by nuke from the render layer
+        thumbnail_path = self._generate_render_layer_thumbnail(render_path, thumbnail_path)
 
         render_path = render_path.replace("\\work\\", "\\publish\\")
 
@@ -321,55 +323,74 @@ class PublishHook(Hook):
         # Delete the thumbnail created by nuke
         os.remove(thumbnail_path)
 
+
 # Added by Chetan Patel
-# May 2016 (KittenWitch Project)
+# June 2016 (KittenWitch Project)
 # ----------------------------------------------------
 # A To generate jpg thumbnails from the exr using
 # Nuke
 # ----------------------------------------------------
-    def _generate_render_layer_thumbnail(self, render_path):
+    def _generate_render_layer_thumbnail(self, render_path, old_thumbnail_path):
 
-        nukePath = "C:\\apps\\nuke\\9.0v8\\Nuke9.0.exe"
+        # get the nuke path and define arguments for command line rendering
+        nuke_path = self.__get_nuke_path()
+        nuke_args = "-t -i"
+
+        # get the working directory
         scene_name = cmds.file(query=True, sn=True)
-        dir = os.path.dirname(scene_name)
-        pythonScript = dir + "/dummy.py"
+        work_dir = os.path.dirname(scene_name)
 
+        # location for python script to feed into nuke at the command line
+        python_script = work_dir + "/dummy.py"
+
+        # get the renders
         img_dir = os.path.dirname(render_path)
         render_files = os.listdir(img_dir)
 
+        # define the image to use as the thumbnail. Finds the frame in the middle of the sequence
         count = 0
-        inImage = "Not found"
+        in_image = "Not found"
 
         for img in render_files:
             if count is int(len(render_files)/2):
-                inImage = img
-            count +=1
+                in_image = img
+            count += 1
 
-        outImage = os.path.splitext(inImage)[0] + ".jpg"
+        # if an image is found then create the thumbnail
+        if in_image is not "Not found":
 
-        frame = os.path.splitext(outImage)[0][-4:]
+            # set the jpg version location
+            out_image = os.path.splitext(in_image)[0] + ".jpg"
 
-        try:
-            f = open(pythonScript, "w")
-            f.write("r = nuke.nodes.Read(file = \"" + img_dir.replace("\\", "/") + "/" + inImage + "\")\n")
-            f.write("ref = nuke.createNode(\"Reformat\", \"type scale scale 0.3\")\n")
-            f.write("ref.setInput( 0, r )\n")
-            f.write("w = nuke.nodes.Write(file = \"" + dir.replace("\\", "/") + "/" + outImage + "\")\n")
-            f.write("w.setInput( 0, ref )\n")
-            f.write("nuke.execute(\"Write1\", " + frame + " , " + frame + ")")
-            f.close()
-        except ValueError:
-            print "======= Error: {}".format(ValueError)
+            # get the frame number
+            frame = os.path.splitext(out_image)[0][-4:]
 
-        subprocess.call("c:\\apps\\nuke\\9.0v8\\nuke9.0.exe -t -i " + pythonScript)
-        #remove the pythonscript
-        os.remove(pythonScript)
+            # create a python script to which reads in a single frame and reformats it
+            try:
+                f = open(python_script, "w")
+                f.write("r = nuke.nodes.Read(file = \"" + img_dir.replace("\\", "/") + "/" + in_image + "\")\n")
+                f.write("ref = nuke.createNode(\"Reformat\", \"type scale scale 0.3\")\n")
+                f.write("ref.setInput( 0, r )\n")
+                f.write("w = nuke.nodes.Write(file = \"" + work_dir.replace("\\", "/") + "/" + out_image + "\")\n")
+                f.write("w.setInput( 0, ref )\n")
+                f.write("nuke.execute(\"Write1\", " + frame + " , " + frame + ")")
+                f.close()
+            except ValueError:
+                print "======= Error: {}".format(ValueError)
 
-        return dir.replace("\\", "/") + "/" + outImage
+            # call the nuke command line render command
+            subprocess.call(nuke_path + " " + nuke_args + " " + python_script)
+            # remove the python script
+            os.remove(python_script)
+
+            return work_dir.replace("\\", "/") + "/" + out_image
+
+        # if an image was not found use the original screen shot thumbnail
+        return old_thumbnail_path
 
 
 # Added by Chetan Patel
-# May 2016 (KittenWitch Project)
+# June 2016 (KittenWitch Project)
 # --------------------------------------------------------
 # A helper method to copy rendered files from maya's work
 # area to the publishing area.
@@ -378,16 +399,39 @@ class PublishHook(Hook):
     def __copy_renders(self, render_path):
 
         render_work_dir = os.path.dirname(render_path)
-        #swap the "\work\" string with "\publish\"
+        # swap the "\work\" string with "\publish\"
         render_publish_dir = render_work_dir.replace("\\work\\", "\\publish\\")
         render_files = os.listdir(render_work_dir)
 
-        for file in render_files:
+        for render_file in render_files:
             if not os.path.exists(render_publish_dir):
                 old_umask = os.umask(0)
                 os.makedirs(render_publish_dir, 0777)
                 os.umask(old_umask)
 
-            with open(render_work_dir + "\\" + file, "rb") as fin:
-                with open(render_publish_dir + "\\" + file, "wb") as fout:
+            with open(render_work_dir + "\\" + render_file, "rb") as fin:
+                with open(render_publish_dir + "\\" + render_file, "wb") as fout:
                     shutil.copyfileobj(fin, fout, 1024 * 1024 * 10)
+
+
+# Added by Chetan Patel
+# June 2016 (KittenWitch Project)
+# --------------------------------------------------------
+# A helper method to copy get the nuke exe path from
+# the shotgun configuration file
+# --------------------------------------------------------
+
+    def __get_nuke_path(self):
+
+        # Get the shotgun paths.yml file
+        current_engine = sgtk.platform.current_engine()
+        context = current_engine.context
+        tk = tank.tank_from_path(context.tank.roots["primary"])
+        config_path = tk.pipeline_configuration.get_path() + "\\config\\env\\includes\\paths.yml"
+
+        # use yaml to extract the path location
+        with open(config_path, 'r') as yml_config_file:
+            config_file = yaml.load(yml_config_file)
+
+        nuke_path = config_file["nuke_windows"]
+        return nuke_path

@@ -20,107 +20,25 @@
     <favorites_list name="mds_dev" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="publish_form.py" pinned="false" current-in-tab="false">
-        <entry file="file:$PROJECT_DIR$/../../../../..//$PROJECT_DIR$/install/apps/app_store/tk-multi-publish/v0.6.10/python/tk_multi_publish/publish_form.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1132">
-              <caret line="136" column="54" selection-start-line="136" selection-start-column="45" selection-end-line="136" selection-end-column="54" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="secondary_publish_tk-maya.py" pinned="false" current-in-tab="false">
-        <entry file="file:$PROJECT_DIR$/../../../../..//$PROJECT_DIR$/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/secondary_publish_tk-maya.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="341" column="0" selection-start-line="341" selection-start-column="0" selection-end-line="341" selection-end-column="0" />
-              <folding>
-                <element signature="e#452#461#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="scan_scene_tk-maya-yeti_sim.py" pinned="false" current-in-tab="false">
-        <entry file="file:$PROJECT_DIR$/../../../../..//$PROJECT_DIR$/config/hooks/scan_scene_tk-maya-yeti_sim.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="63" column="8" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="8" />
-              <folding>
-                <element signature="e#452#461#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="secondary_publish_tk-maya-yeti_sim.py" pinned="false" current-in-tab="false">
-        <entry file="file:$PROJECT_DIR$/../../../../..//$PROJECT_DIR$/config/hooks/secondary_publish_tk-maya-yeti_sim.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="291" column="43" selection-start-line="291" selection-start-column="43" selection-end-line="291" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="secondary_publish_tk-maya-yeti_sim.py" pinned="false" current-in-tab="false">
-        <entry file="file:$PROJECT_DIR$/../../../../..//Z:/Pipeline/BAD16023/kittenwitch/config/hooks/secondary_publish_tk-maya-yeti_sim.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="267" column="0" selection-start-line="267" selection-start-column="0" selection-end-line="267" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="scan_scene_tk-maya-yeti_sim.py" pinned="false" current-in-tab="false">
-        <entry file="file:$PROJECT_DIR$/../../../../..//Z:/Pipeline/BAD16023/kittenwitch/config/hooks/scan_scene_tk-maya-yeti_sim.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="488">
-              <caret line="62" column="70" selection-start-line="62" selection-start-column="12" selection-end-line="62" selection-end-column="70" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="secondary_pre_publish_tk-maya-yeti_sim.py" pinned="false" current-in-tab="false">
-        <entry file="file:$PROJECT_DIR$/../../../../..//Z:/Pipeline/BAD16023/kittenwitch/config/hooks/secondary_pre_publish_tk-maya-yeti_sim.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="131" column="55" selection-start-line="131" selection-start-column="55" selection-end-line="131" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="secondary_pre_publish_tk-maya-yeti_sim.py" pinned="false" current-in-tab="true">
-        <entry file="file:$PROJECT_DIR$/../../../../..//$PROJECT_DIR$/config/hooks/secondary_pre_publish_tk-maya-yeti_sim.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="505">
-              <caret line="124" column="0" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mds-tk-maya_actions.py" pinned="false" current-in-tab="false">
-        <entry file="file:$PROJECT_DIR$/../../../../..//$PROJECT_DIR$/config/hooks/loader/mds-tk-maya_actions.py">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="primary_publish.py" pinned="false" current-in-tab="false">
+        <entry file="file:$PROJECT_DIR$/../../../../..//$PROJECT_DIR$/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/primary_publish.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="340">
-              <caret line="210" column="0" selection-start-line="210" selection-start-column="0" selection-end-line="239" selection-end-column="0" />
+              <caret line="213" column="28" selection-start-line="213" selection-start-column="25" selection-end-line="213" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mds-tk-maya_actions.py" pinned="false" current-in-tab="false">
-        <entry file="file:$PROJECT_DIR$/../../../../..//Z:/Pipeline/BAD16023/kittenwitch/config/hooks/loader/mds-tk-maya_actions.py">
+      <file leaf-file-name="secondary_publish_tk-maya.py" pinned="false" current-in-tab="true">
+        <entry file="file:$PROJECT_DIR$/../../../../..//$PROJECT_DIR$/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/secondary_publish_tk-maya.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="204" column="0" selection-start-line="204" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="1275">
+              <caret line="434" column="0" selection-start-line="434" selection-start-column="0" selection-end-line="434" selection-end-column="0" />
+              <folding>
+                <element signature="e#452#461#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -175,13 +93,13 @@
         <option value="$PROJECT_DIR$/config/core/hooks/pick_environment.py" />
         <option value="$PROJECT_DIR$/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/copy_file.py" />
         <option value="$PROJECT_DIR$/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/primary_publish.py" />
-        <option value="$PROJECT_DIR$/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/secondary_publish_tk-maya.py" />
         <option value="$PROJECT_DIR$/config/hooks/secondary_publish_tk-maya-yeti_sim.py" />
         <option value="$PROJECT_DIR$/config/hooks/loader/mds-tk-maya_actions.py" />
         <option value="Z:/Pipeline/BAD16023/kittenwitch/config/hooks/loader/mds-tk-maya_actions.py" />
         <option value="Z:/Pipeline/BAD16023/kittenwitch/config/hooks/secondary_publish_tk-maya-yeti_sim.py" />
         <option value="Z:/Pipeline/BAD16023/kittenwitch/config/hooks/secondary_pre_publish_tk-maya-yeti_sim.py" />
         <option value="$PROJECT_DIR$/config/hooks/secondary_pre_publish_tk-maya-yeti_sim.py" />
+        <option value="$PROJECT_DIR$/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/secondary_publish_tk-maya.py" />
       </list>
     </option>
   </component>
@@ -235,6 +153,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -249,7 +168,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="kittenwitch" />
+              <option name="myItemId" value="mds_dev" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -259,11 +178,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="kittenwitch" />
+              <option name="myItemId" value="mds_dev" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
+              <option name="myItemId" value="install" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -273,101 +192,101 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="kittenwitch" />
+              <option name="myItemId" value="mds_dev" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
+              <option name="myItemId" value="install" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mds_dev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mds_dev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="install" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app_store" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mds_dev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mds_dev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="install" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app_store" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tk-multi-publish" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="v0.6.10" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mds_dev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mds_dev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="install" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app_store" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tk-multi-publish" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="v0.6.10" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="hooks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kittenwitch" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hooks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="loader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hooks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hooks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="loader" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -391,7 +310,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -570,7 +488,6 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2046875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3435469" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38997215" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -582,6 +499,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38997215" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -625,7 +543,7 @@
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
-          <url>file:$PROJECT_DIR$/../../../../..//$PROJECT_DIR$/install/apps/app_store/tk-multi-publish/v0.6.10/python/tk_multi_publish/publish.py</url>
+          <url>file:$PROJECT_DIR$/../../../../..////productions/boad/Pipeline/development/mds_dev/install/apps/app_store/tk-multi-publish/v0.6.10/python/tk_multi_publish/publish.py</url>
           <line>10</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
@@ -635,11 +553,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/install/apps/app_store/tk-multi-breakdown/v1.3.1/python/__init__.py" />
-    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/install/apps/app_store/tk-multi-breakdown/v1.3.1/python/tk_multi_breakdown/scene_browser.py" />
-    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/install/apps/app_store/tk-multi-breakdown/v1.3.1/python/tk_multi_breakdown/breakdown_list_item.py" />
-    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/config/hooks/scan_scene_tk-maya-yeti_sim.py" />
-    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/install/apps/app_store/tk-multi-breakdown/v1.3.1/hooks/tk-maya_scene_operations.py" />
     <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/install/apps/app_store/tk-multi-breakdown/v1.3.1/python/tk_multi_breakdown/breakdown.py" />
     <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/install/apps/app_store/tk-multi-breakdown/v1.3.1/hooks/tk-nuke_scene_operations.py" />
     <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/primary_pre_publish.py" />
@@ -670,137 +583,40 @@
     <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/config/core/templates.yml" />
     <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/primary_publish.py" />
     <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/copy_file.py" />
-    <entry file="file:$PROJECT_DIR$/../../../../..//$PROJECT_DIR$/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/primary_pre_publish.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:$PROJECT_DIR$/../../../../..//$PROJECT_DIR$/install/apps/app_store/tk-multi-publish/v0.6.10/python/tk_multi_publish/publish_details_form.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="36" column="7" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/primary_pre_publish.py" />
+    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/install/apps/app_store/tk-multi-publish/v0.6.10/python/tk_multi_publish/publish_details_form.py" />
+    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/primary_publish.py" />
+    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/install/apps/app_store/tk-multi-publish/v0.6.10/app.py" />
+    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/thumbnail.py" />
+    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/install/apps/app_store/tk-multi-publish/v0.6.10/python/tk_multi_publish/publish.py" />
+    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/install/apps/app_store/tk-multi-publish/v0.6.10/python/tk_multi_publish/publish_form.py" />
+    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/secondary_publish_tk-maya.py" />
+    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/config/hooks/loader/mds-tk-maya_actions.py" />
+    <entry file="file:$PROJECT_DIR$/../../../../../Z:/Pipeline/BAD16023/kittenwitch/config/hooks/loader/mds-tk-maya_actions.py" />
+    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/config/hooks/secondary_publish_tk-maya-yeti_sim.py" />
+    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/config/hooks/scan_scene_tk-maya-yeti_sim.py" />
+    <entry file="file:$PROJECT_DIR$/../../../../../Z:/Pipeline/BAD16023/kittenwitch/config/hooks/secondary_publish_tk-maya-yeti_sim.py" />
+    <entry file="file:$PROJECT_DIR$/../../../../../Z:/Pipeline/BAD16023/kittenwitch/config/hooks/scan_scene_tk-maya-yeti_sim.py" />
+    <entry file="file:$PROJECT_DIR$/../../../../../Z:/Pipeline/BAD16023/kittenwitch/config/hooks/secondary_pre_publish_tk-maya-yeti_sim.py" />
+    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/config/hooks/secondary_pre_publish_tk-maya-yeti_sim.py" />
+    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/install/core/hooks/tank_init.py" />
+    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/install/core/python/tank/__init__.py" />
+    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/install/core/python/tank/api.py" />
     <entry file="file:$PROJECT_DIR$/../../../../..//$PROJECT_DIR$/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/primary_publish.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="202" column="57" selection-start-line="202" selection-start-column="57" selection-end-line="202" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:$PROJECT_DIR$/../../../../..//$PROJECT_DIR$/install/apps/app_store/tk-multi-publish/v0.6.10/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="35" column="40" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:$PROJECT_DIR$/../../../../..//$PROJECT_DIR$/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/thumbnail.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3281">
-          <caret line="199" column="32" selection-start-line="199" selection-start-column="32" selection-end-line="199" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:$PROJECT_DIR$/../../../../..//$PROJECT_DIR$/install/apps/app_store/tk-multi-publish/v0.6.10/python/tk_multi_publish/publish.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
-          <folding>
-            <element signature="e#452#461#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:$PROJECT_DIR$/../../../../..//$PROJECT_DIR$/install/apps/app_store/tk-multi-publish/v0.6.10/python/tk_multi_publish/publish_form.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1132">
-          <caret line="136" column="54" selection-start-line="136" selection-start-column="45" selection-end-line="136" selection-end-column="54" />
+        <state relative-caret-position="340">
+          <caret line="213" column="28" selection-start-line="213" selection-start-column="25" selection-end-line="213" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file:$PROJECT_DIR$/../../../../..//$PROJECT_DIR$/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/secondary_publish_tk-maya.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="341" column="0" selection-start-line="341" selection-start-column="0" selection-end-line="341" selection-end-column="0" />
+        <state relative-caret-position="1275">
+          <caret line="434" column="0" selection-start-line="434" selection-start-column="0" selection-end-line="434" selection-end-column="0" />
           <folding>
             <element signature="e#452#461#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:$PROJECT_DIR$/../../../../..//$PROJECT_DIR$/config/hooks/loader/mds-tk-maya_actions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="210" column="0" selection-start-line="210" selection-start-column="0" selection-end-line="239" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:$PROJECT_DIR$/../../../../..//Z:/Pipeline/BAD16023/kittenwitch/config/hooks/loader/mds-tk-maya_actions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="204" column="0" selection-start-line="204" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:$PROJECT_DIR$/../../../../..//$PROJECT_DIR$/config/hooks/secondary_publish_tk-maya-yeti_sim.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="291" column="43" selection-start-line="291" selection-start-column="43" selection-end-line="291" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:$PROJECT_DIR$/../../../../..//$PROJECT_DIR$/config/hooks/scan_scene_tk-maya-yeti_sim.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="63" column="8" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="8" />
-          <folding>
-            <element signature="e#452#461#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:$PROJECT_DIR$/../../../../..//Z:/Pipeline/BAD16023/kittenwitch/config/hooks/secondary_publish_tk-maya-yeti_sim.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="267" column="0" selection-start-line="267" selection-start-column="0" selection-end-line="267" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:$PROJECT_DIR$/../../../../..//Z:/Pipeline/BAD16023/kittenwitch/config/hooks/scan_scene_tk-maya-yeti_sim.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="62" column="70" selection-start-line="62" selection-start-column="12" selection-end-line="62" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:$PROJECT_DIR$/../../../../..//Z:/Pipeline/BAD16023/kittenwitch/config/hooks/secondary_pre_publish_tk-maya-yeti_sim.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="131" column="55" selection-start-line="131" selection-start-column="55" selection-end-line="131" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:$PROJECT_DIR$/../../../../..//$PROJECT_DIR$/config/hooks/secondary_pre_publish_tk-maya-yeti_sim.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="505">
-          <caret line="124" column="0" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>

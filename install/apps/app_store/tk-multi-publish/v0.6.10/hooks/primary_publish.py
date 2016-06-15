@@ -71,7 +71,7 @@ class PrimaryPublishHook(Hook):
                                 The default thumbnail provided for the publish
                         
         :param sg_task:         Dictionary (shotgun entity description)
-                                The shotgun task to use for the publish    
+                                    The shotgun task to use for the publish
                         
         :param progress_cb:     Function
                                 A progress callback to log progress during pre-publish.  Call:
@@ -131,7 +131,7 @@ class PrimaryPublishHook(Hook):
 
         progress_cb(0.0, "Finding scene dependencies", task)
         dependencies = self._maya_find_additional_scene_dependencies()
-
+        print "hello"
         # get scene path
         scene_path = os.path.abspath(cmds.file(query=True, sn=True))
 

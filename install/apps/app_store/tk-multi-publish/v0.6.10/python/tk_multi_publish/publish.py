@@ -45,9 +45,8 @@ class PublishHandler(object):
         primary_output_dict["tank_type"] = self._app.get_setting("primary_tank_type")
         primary_output_dict["publish_template"] = self._app.get_setting("primary_publish_template")
         self._primary_output = PublishOutput(self._app, primary_output_dict, name=PublishOutput.PRIMARY_NAME, selected=True, required=True)
-        
         self._secondary_outputs = [PublishOutput(self._app, output) for output in self._app.get_setting("secondary_outputs")]
-        
+
         # validate the secondary outputs:
         unique_names = []
         for output in self._secondary_outputs:
@@ -72,7 +71,6 @@ class PublishHandler(object):
         """
         Displays the publish dialog
         """
-        
         try:
             # create new multi-publish dialog instance
             from .publish_form import PublishForm
@@ -91,10 +89,8 @@ class PublishHandler(object):
         """
         # scan scene for items
         items = self._scan_scene()
-
         # build task list:            
         tasks = self._build_task_list(items)
-        
         return tasks
     
     def get_shotgun_tasks(self):
@@ -131,10 +127,8 @@ class PublishHandler(object):
         """
         Slot called when publish signal is emitted from the UI
         """
-        
         # get list of tasks from UI:
         selected_tasks = publish_form.selected_tasks
-
         # stop if can't actually do the publish!
         if not selected_tasks:
             # TODO - replace with tank dialog

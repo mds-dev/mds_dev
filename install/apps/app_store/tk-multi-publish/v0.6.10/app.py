@@ -27,7 +27,6 @@ class MultiPublish(tank.platform.Application):
         tk_multi_publish = self.import_module("tk_multi_publish")
         
         self._publish_handler = tk_multi_publish.PublishHandler(self)
-        
         # register commands:
         display_name = self.get_setting("display_name")
         

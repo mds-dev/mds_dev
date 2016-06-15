@@ -55,7 +55,8 @@ class ScanSceneHook(Hook):
         """   
                 
         items = []
-        
+        print "running scan scene hook"
+        print "kwargs = {}".format(kwargs)
         # get the main scene:
         scene_name = cmds.file(query=True, sn=True)
         if not scene_name:
@@ -74,62 +75,65 @@ class ScanSceneHook(Hook):
 
 
 # Added by Chetan Patel
-# May 2016 (KittenWitch Project)
+# June 2016 (KittenWitch Project)
 # ------------------------------------------------
 # Adds rendered image publishing functionality to maya
 # Based on the two Two Guys and a Toolkit
 # ------------------------------------------------
 
-        # we'll use the engine to get the templates
+        # If we are in the lighting step look for renders
+
         engine = tank.platform.current_engine()
+        context = engine.context
 
-        # get the "maya_shot_work" template to grab some info from the current
-        # work file. get_fields will pull out the version number for us.
-        work_template = engine.tank.templates.get("maya_shot_work")
-        work_template_fields = work_template.get_fields(scene_name)
-        version = work_template_fields["version"]
+        if context.step["name"] == "Light":
+            # get the "maya_shot_work" template to grab some info from the current
+            # work file. get_fields will pull out the version number for us.
+            work_template = engine.tank.templates.get("maya_shot_work")
+            work_template_fields = work_template.get_fields(scene_name)
+            version = work_template_fields["version"]
 
-        # now grab the render template to match against.
-        render_template = engine.tank.templates.get("maya_shot_render_folder")
+            # now grab the render template to match against.
+            render_template = engine.tank.templates.get("maya_shot_render_folder")
 
-        # now look for rendered images. note that the cameras returned from
-        # listCameras will include full DAG path. You may need to account
-        # for this in your, more robust solution, if you want the camera name
-        # to be part of the publish path. For my simple test, the cameras
-        # are not parented, so there is no hierarchy.
+            # now look for rendered images. note that the cameras returned from
+            # listCameras will include full DAG path. You may need to account
+            # for this in your, more robust solution, if you want the camera name
+            # to be part of the publish path. For my simple test, the cameras
+            # are not parented, so there is no hierarchy.
 
-        # iterate over all render layers
+            # iterate over all render layers
 
-        for layer in cmds.ls(type="renderLayer"):
+            for layer in cmds.ls(type="renderLayer"):
 
-            # apparently maya has 2 names for the default layer. I'm
-            # guessing it actually renders out as 'masterLayer'.
-            layer = layer.replace("defaultRenderLayer", "masterLayer")
+                # apparently maya has 2 names for the default layer. I'm
+                # guessing it actually renders out as 'masterLayer'.
+                layer = layer.replace("defaultRenderLayer", "masterLayer")
 
-            # these are the fields to populate into the template to match
-            # against
-            fields = {
-                'render_layer': layer,
-                'name': layer,
-                'version': version,
-                }
-
-            # match existing paths against the render template
-            paths = engine.tank.abstract_paths_from_template(
-                render_template, fields)
-
-            # if there's a match, add an item to the render
-            if paths:
-                items.append({
-                    "type": "maya_rendered_image",
-                    "name": layer,
-                    # since we already know the path, pass it along for
-                    # publish hook to use
-                    "other_params": {
-                        # just adding first path here. may want to do some
-                        # additional validation if there are multiple.
-                        'path': paths[0],
+                # these are the fields to populate into the template to match
+                # against
+                fields = {
+                    'render_layer': layer,
+                    'name': layer,
+                    'version': version,
                     }
-                })
+
+                # match existing paths against the render template
+                paths = engine.tank.abstract_paths_from_template(
+                    render_template, fields)
+
+                # if there's a match, add an item to the render
+                if paths:
+                    items.append({
+                        "type": "maya_rendered_image",
+                        "name": layer,
+                        # since we already know the path, pass it along for
+                        # publish hook to use
+                        "other_params": {
+                            # just adding first path here. may want to do some
+                            # additional validation if there are multiple.
+                            'path': paths[0],
+                        }
+                    })
 
         return items

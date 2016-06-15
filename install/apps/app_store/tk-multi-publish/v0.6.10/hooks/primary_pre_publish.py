@@ -99,7 +99,7 @@ class PrimaryPrePublishHook(Hook):
                                 during pre-publish
         """
         import maya.cmds as cmds
-        
+
         progress_cb(0.0, "Validating current scene", task)
         
         # get the current scene file:
@@ -108,6 +108,7 @@ class PrimaryPrePublishHook(Hook):
             scene_file = os.path.abspath(scene_file)
             
         # validate it:
+        print "validating file"
         scene_errors = self._validate_work_file(scene_file, work_template, task["output"], progress_cb)
 
         progress_cb(100)

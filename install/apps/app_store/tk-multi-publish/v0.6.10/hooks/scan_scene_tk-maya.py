@@ -92,7 +92,8 @@ class ScanSceneHook(Hook):
             work_template = engine.tank.templates.get("maya_shot_work")
             work_template_fields = work_template.get_fields(scene_name)
             version = work_template_fields["version"]
-
+            shot = work_template_fields["Shot"]
+            step = work_template_fields["Step"]
             # now grab the render template to match against.
             render_template = engine.tank.templates.get("maya_shot_render_folder")
 
@@ -114,9 +115,11 @@ class ScanSceneHook(Hook):
                 # against
                 fields = {
                     'render_layer': layer,
-                    'name': layer,
                     'version': version,
-                    }
+                    'Shot': shot,
+                    'Step': step,
+                }
+
 
                 # match existing paths against the render template
                 paths = engine.tank.abstract_paths_from_template(

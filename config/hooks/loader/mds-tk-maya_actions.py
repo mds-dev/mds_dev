@@ -138,7 +138,7 @@ class MayaActions(HookBaseClass):
         
         if name == "reference" or name == "reference version" or name == "reference master":
             self._create_reference(path, sg_publish_data)
-            print "sg_publish_data = {}".format(sg_publish_data)
+
             if sg_publish_data["published_file_type"]["name"] == "Yeti Sim Nodes" and name == "reference master":
                 self._connect_master_yeti_cache(sg_publish_data)
 
@@ -185,6 +185,7 @@ class MayaActions(HookBaseClass):
             self.parent.log_info("Asset File:No Namespace Needed")
             namespace = ":"
 
+
         ref = pm.system.createReference(path,
                                         loadReferenceDepth= "all",
                                         mergeNamespacesOnClash=False,
@@ -192,6 +193,8 @@ class MayaActions(HookBaseClass):
 
         # Load the shaders into scene
         if any(x in path for x in ["sculpt","surface"]):
+            print "**************************************************"
+            print "path = {}".format(path)
             self._import_published_shaders(path,ref)
          #Hack to stop reference also being loaded - as file is not empty anymore
             cmds.file(path, removeReference=True)
@@ -209,37 +212,36 @@ class MayaActions(HookBaseClass):
     # cache.
 
     def _connect_master_yeti_cache(self, sg_publish_data):
-        print "connecting master 2"
+
         name_space = os.path.splitext(sg_publish_data["code"])[0]
         objs = cmds.ls(name_space + ":*")
         for i in objs:
-            print "i = {}".format(i)
+
             if cmds.objectType(i, isType="pgYetiMaya"):
                 cache = cmds.getAttr("%s.%s" % (i, "cacheFileName"))
                 cache_file_name = os.path.basename(cache)
-                print "cache_file_name = {}".format(cache_file_name)
-                print "cache = {}".format(cache)
                 scene_name = cmds.file(query=True, sn=True)
+
                 tk = tank.tank_from_path(scene_name)
                 cache_template = tk.templates["maya_shot_yeti_cache"]
                 master_template = tk.templates["maya_shot_yeti_master_cache"]
                 fields = cache_template.get_fields(cache, ["version"])
                 master_cache_dir = master_template.apply_fields(fields)
+
                 regex = r"(.*)v(\d+)"
                 match = re.search(regex, os.path.basename(cache))
-
 
                 cache_file_start = match.group(1)
                 cache_file_end = cache_file_name.replace(match.group(0), "")
                 cache_file_name = cache_file_start + cache_file_end[1:]
                 cache_file_name = master_cache_dir + "\\" + cache_file_name.replace("_yeticache", "_yetiMasterCache")
-                print "master cache = {}".format(cache_file_name)
                 cmds.setAttr("%s.%s" % (i, "cacheFileName"),
                              cache_file_name,
                              type="string")
 
     # Edited by Chet May 2016
     # (Project: KittenWitch)
+    # ==========================================================================================
     # Helper method to connect the yeti nodes with their associated mesh.
     # The associated mesh is added as an attribute in the publishing of the fur task.
     # The attribute is stored on the transform node of the pgYetiMaya and pgYetiGroom nodes
@@ -264,8 +266,11 @@ class MayaActions(HookBaseClass):
                 attributes = cmds.listAttr(transform)
 
                 for attribute in attributes:
+
                     if "connectedMeshName" in attribute:
                         meshName = cmds.getAttr("%s.%s" % (transform, attribute))
+
+                        print "meshname = {}".format(meshName)
                         # Define the command to run if the yeti node is a pgYetiMaya Node
                         if cmds.objectType(i, isType="pgYetiMaya"):
                             args = ["pgYetiAddGeometry (\"",
@@ -283,10 +288,24 @@ class MayaActions(HookBaseClass):
                                     " )"]
 
                         args = "".join(args)
-                        try:
-                            mel.eval(args)
-                        except ValueError:
-                            print ValueError
+
+                        # check if the mesh is not already an input
+
+                        sources = cmds.listConnections(i + ".inputGeometry")
+                        print "sources = {}".format(sources)
+                        no_input = True
+                        if sources:
+                            for s in sources:
+                                if s in meshName:
+                                    no_input = False
+                                    print "thing is not connected"
+                                else:
+                                    print "this is already connected"
+                        if no_input:
+                            try:
+                                mel.eval(args)
+                            except ValueError:
+                                print ValueError
 
     def _import_published_shaders(self,path,ref):
         tk = sgtk.sgtk_from_path(path)
@@ -326,9 +345,15 @@ class MayaActions(HookBaseClass):
                     shaderAPI.namespace = "%s:"%nameSpace
                     shaderAPI.reapply_all_shaders()
 
-            shaderAPI.assetNameSpace = ref.namespace
-            shaderAPI.add_shader_nameSpace()
-            # Add namespaces to the Shaders
+# Edited by Chet May 2016
+# (Project: KittenWitch)
+# ==========================================================================================
+# Commented this code out because namespaces were doubling up and not unloading the
+# reference after bringing in the shaders
+
+            # shaderAPI.assetNameSpace = ref.namespace
+            # shaderAPI.add_shader_nameSpace()
+            # # Add namespaces to the Shaders
         else:
             ref.remove()
             raise Exception("No Alembics found associated that matches the model used in the published Surface task")

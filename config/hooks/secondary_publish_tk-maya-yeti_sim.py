@@ -137,7 +137,6 @@ class PublishHook(Hook):
             item = task["item"]
             output = task["output"]
             errors = []
-        
             # report progress:
             progress_cb(0, "Publishing", task)
 
@@ -248,10 +247,10 @@ class PublishHook(Hook):
             # close undo chunks if the export fails and undo grouping and cache path changing
             cmds.undoInfo(state=True, closeChunk=True)
             cmds.undo()
-
             raise TankError("Failed to export Yeti Nodes: %s" % e)
 
         # register the publish:
+
         progress_cb(75, "Registering the publish")        
         args = {
             "tk": self.parent.tank,
@@ -318,7 +317,7 @@ class PublishHook(Hook):
                     with open(master_cache_path + "/" + mastername + framenum + ".fur", "wb") as fout:
                         shutil.copyfileobj(fin, fout, 1024 * 1024 * 10)
 
-            #set the new path to the version cache before exporting.
+            # set the new path to the version cache before exporting.
             padding_str = "%" + padding_num + "d"
             cmds.setAttr("%s.%s" % (node, "cacheFileName"),
                          cache_path + "/" + scenename + padding_str + ".fur", type="string")

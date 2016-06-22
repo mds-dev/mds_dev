@@ -70,20 +70,20 @@ class SaveAs(object):
 
         #PRITISH MODIFICATION. QUERY IF THEY  REALLY WANT TO USE THIS
         if self._work_template.validate(current_path):
-            msg = """You scene is already saved.
+            msg = """You scene is already saved and using "Save As" will create numerical gaps in your publishes
 
 If you want to save a iteration of your work please use the Snapshot tool.
-However if you which to branch away for testing then the "Save As" is appropriate for those scenarios.
-NEVER publish from your test file and you need to label it clearly in the description.
+
+If you wish to branch away for testing purposes then the "SG Branch" shelf button is appropriate for those scenarios.
 
 """
 
             question = QtGui.QMessageBox()
-            question.setWindowTitle("Scene is already saved")
-            question.setText("Continue using Shotgun Save As?")
+            question.setWindowTitle("Warning - Scene is already saved")
+            question.setText('Continue using Shotgun "Save As"  instead\n of the Snapshot Tool?')
             question.setStandardButtons(QtGui.QMessageBox.Yes|QtGui.QMessageBox.No)
             question.setDetailedText(msg)
-            question.setIcon(QtGui.QMessageBox.Question)
+            question.setIcon(QtGui.QMessageBox.Warning)
             res = question.exec_()
             if res == QtGui.QMessageBox.No:
                 return False

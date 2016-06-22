@@ -609,7 +609,7 @@ class Snapshot(object):
         
 #NEW
         res = QtGui.QMessageBox.question(None,  "Restore Snapshot?", 
-                                         "Do you want to snapshot the current work file before restoring?", 
+                                         "Do you want to snapshot before restoring? If you don't create one, You will lose your current scene state",
                                          QtGui.QMessageBox.Yes | QtGui.QMessageBox.No | QtGui.QMessageBox.Cancel)
 
         if res == QtGui.QMessageBox.Cancel:

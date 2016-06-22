@@ -9,6 +9,7 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
 import os
+import os.path
 import maya.cmds as cmds
 
 import tank
@@ -120,23 +121,28 @@ class ScanSceneHook(Hook):
                     'Step': step,
                 }
 
-
                 # match existing paths against the render template
                 paths = engine.tank.abstract_paths_from_template(
                     render_template, fields)
+                print ""
+                for i in paths:
+                    print "path = {}".format(i)
 
                 # if there's a match, add an item to the render
                 if paths:
-                    items.append({
-                        "type": "maya_rendered_image",
-                        "name": layer,
-                        # since we already know the path, pass it along for
-                        # publish hook to use
-                        "other_params": {
-                            # just adding first path here. may want to do some
-                            # additional validation if there are multiple.
-                            'path': paths[0],
-                        }
-                    })
+                    # Check that the directory exists
+                    dir_path = os.path.dirname(paths[0])
+                    if os.path.isdir(dir_path):
+                        items.append({
+                            "type": "maya_rendered_image",
+                            "name": layer,
+                            # since we already know the path, pass it along for
+                            # publish hook to use
+                            "other_params": {
+                                # just adding first path here. may want to do some
+                                # additional validation if there are multiple.
+                                'path': paths[0],
+                            }
+                        })
 
         return items

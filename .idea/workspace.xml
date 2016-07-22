@@ -21,51 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="secondary_publish_tk-maya.py" pinned="false" current-in-tab="false">
-        <entry file="file:$PROJECT_DIR$/../../../../..//Z:/Pipeline/BAD16023/kittenwitch/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/secondary_publish_tk-maya.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3264">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="scan_scene_tk-maya.py" pinned="false" current-in-tab="false">
-        <entry file="file:$PROJECT_DIR$/../../../../..//Z:/Pipeline/BAD16023/kittenwitch/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/scan_scene_tk-maya.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="794">
-              <caret line="118" column="39" selection-start-line="118" selection-start-column="39" selection-end-line="118" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mds-tk-maya_actions.py" pinned="false" current-in-tab="false">
-        <entry file="file:$PROJECT_DIR$/../../../../..//$PROJECT_DIR$/config/hooks/loader/mds-tk-maya_actions.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="240" column="0" selection-start-line="240" selection-start-column="0" selection-end-line="240" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mds-tk-maya_actions.py" pinned="false" current-in-tab="true">
-        <entry file="file:$PROJECT_DIR$/../../../../..//Z:/Pipeline/BAD16023/kittenwitch/config/hooks/loader/mds-tk-maya_actions.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="274" column="67" selection-start-line="274" selection-start-column="67" selection-end-line="274" selection-end-column="67" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="scan_scene_tk-maya.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="scan_scene_tk-maya.py" pinned="false" current-in-tab="true">
         <entry file="file:$PROJECT_DIR$/../../../../..//$PROJECT_DIR$/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/scan_scene_tk-maya.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="105" column="42" selection-start-line="105" selection-start-column="40" selection-end-line="105" selection-end-column="42" />
+            <state relative-caret-position="102">
+              <caret line="96" column="47" selection-start-line="96" selection-start-column="47" selection-end-line="96" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -81,7 +41,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="Z:/Pipeline/BAD16023/kittenwitch" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -125,11 +85,16 @@
         <option value="$PROJECT_DIR$/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/primary_pre_publish.py" />
         <option value="$PROJECT_DIR$/install/apps/app_store/tk-multi-publish/v0.6.10/app.py" />
         <option value="$PROJECT_DIR$/install/apps/app_store/tk-multi-publish/v0.6.10/python/tk_multi_publish/publish.py" />
-        <option value="$PROJECT_DIR$/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/primary_publish.py" />
         <option value="$PROJECT_DIR$/config/hooks/loader/mds-tk-maya_actions.py" />
-        <option value="$PROJECT_DIR$/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/scan_scene_tk-maya.py" />
         <option value="Z:/Pipeline/BAD16023/kittenwitch/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/scan_scene_tk-maya.py" />
         <option value="Z:/Pipeline/BAD16023/kittenwitch/config/hooks/loader/mds-tk-maya_actions.py" />
+        <option value="$PROJECT_DIR$/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/primary_publish.py" />
+        <option value="Z:/Pipeline/BAD16023/kittenwitch/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/primary_publish.py" />
+        <option value="Z:/Pipeline/BAD16023/kittenwitch/install/apps/app_store/tk-multi-workfiles/v0.6.15/python/tk_multi_workfiles/open_file_form.py" />
+        <option value="Z:/Pipeline/BAD16023/kittenwitch/install/apps/app_store/tk-multi-workfiles/v0.6.15/python/tk_multi_workfiles/select_work_area_form.py" />
+        <option value="Z:/Pipeline/BAD16023/kittenwitch/install/apps/app_store/tk-multi-workfiles/v0.6.15/python/tk_multi_workfiles/task_browser.py" />
+        <option value="Z:/Pipeline/BAD16023/kittenwitch/install/apps/app_store/tk-multi-workfiles/v0.6.15/hooks/scene_operation_tk-maya.py" />
+        <option value="$PROJECT_DIR$/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/scan_scene_tk-maya.py" />
       </list>
     </option>
   </component>
@@ -201,7 +166,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -210,308 +174,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kittenwitch" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kittenwitch" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="install" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kittenwitch" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="install" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kittenwitch" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="install" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app_store" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kittenwitch" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="install" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app_store" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tk-multi-publish" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v0.6.10" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kittenwitch" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="install" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app_store" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tk-multi-publish" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v0.6.10" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hooks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kittenwitch" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kittenwitch" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hooks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kittenwitch" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hooks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="loader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="install" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="install" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="install" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app_store" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hooks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mds_dev" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hooks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="loader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -687,7 +352,7 @@
     <frame x="-8" y="-8" width="1936" height="1186" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20416667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20416667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3435469" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -755,17 +420,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:$PROJECT_DIR$/../../../../../Z:/Pipeline/BAD16023/kittenwitch/config/hooks/scan_scene_tk-maya-yeti_sim.py" />
-    <entry file="file:$PROJECT_DIR$/../../../../../Z:/Pipeline/BAD16023/kittenwitch/config/hooks/secondary_pre_publish_tk-maya-yeti_sim.py" />
-    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/config/hooks/secondary_pre_publish_tk-maya-yeti_sim.py" />
-    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/install/core/hooks/tank_init.py" />
-    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/install/core/python/tank/__init__.py" />
-    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/install/core/python/tank/api.py" />
-    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/primary_publish.py" />
-    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/secondary_publish_tk-maya.py" />
-    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/config/env/shot_step.yml" />
-    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/install/apps/app_store/tk-multi-loader2/v1.7.1/python/tk_multi_loader/loader_action_manager.py" />
-    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/config/hooks/loader/mds-tk-maya_actions.py" />
     <entry file="file:$PROJECT_DIR$/../../../../../Z:/Pipeline/BAD16023/kittenwitch/config/env/shot_step.yml" />
     <entry file="file:$PROJECT_DIR$/../../../../../Z:/Pipeline/BAD16023/kittenwitch/config/hooks/loader/mds-tk-maya_actions.py" />
     <entry file="file:$PROJECT_DIR$/../../../../../Z:/Pipeline/BAD16023/kittenwitch/config/env/shot_step.yml" />
@@ -801,42 +455,25 @@
     <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/install/apps/app_store/tk-multi-snapshot/v0.4.1/python/tk_multi_snapshot/snapshot_list_view.py" />
     <entry file="file:$PROJECT_DIR$/../../../../../Z:/Pipeline/BAD16023/kittenwitch/config/hooks/loader/mds-tk-maya_actions.py" />
     <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/config/hooks/loader/mds-tk-maya_actions.py" />
-    <entry file="file:$PROJECT_DIR$/../../../../..//Z:/Pipeline/BAD16023/kittenwitch/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/secondary_publish_tk-maya.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3264">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:$PROJECT_DIR$/../../../../..//Z:/Pipeline/BAD16023/kittenwitch/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/scan_scene_tk-maya.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="794">
-          <caret line="118" column="39" selection-start-line="118" selection-start-column="39" selection-end-line="118" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:$PROJECT_DIR$/../../../../../Z:/Pipeline/BAD16023/kittenwitch/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/secondary_publish_tk-maya.py" />
+    <entry file="file:$PROJECT_DIR$/../../../../../Z:/Pipeline/BAD16023/kittenwitch/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/scan_scene_tk-maya.py" />
+    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/scan_scene_tk-maya.py" />
+    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/config/hooks/loader/mds-tk-maya_actions.py" />
+    <entry file="file:$PROJECT_DIR$/../../../../../Z:/Pipeline/BAD16023/kittenwitch/config/hooks/loader/mds-tk-maya_actions.py" />
+    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/config/env/shot.yml" />
+    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/config/env/shot_step.yml" />
+    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/config/core/templates.yml" />
+    <entry file="file:$PROJECT_DIR$/../../../../../productions/boad/Pipeline/development/mds_dev/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/primary_publish.py" />
+    <entry file="file:$PROJECT_DIR$/../../../../../Z:/Pipeline/BAD16023/kittenwitch/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/primary_publish.py" />
+    <entry file="file:$PROJECT_DIR$/../../../../../Z:/Pipeline/BAD16023/kittenwitch/install/apps/app_store/tk-multi-workfiles/v0.6.15/python/tk_multi_workfiles/open_file_form.py" />
+    <entry file="file:$PROJECT_DIR$/../../../../../Z:/Pipeline/BAD16023/kittenwitch/install/apps/app_store/tk-multi-workfiles/v0.6.15/python/tk_multi_workfiles/select_work_area_form.py" />
+    <entry file="file:$PROJECT_DIR$/../../../../../Z:/Pipeline/BAD16023/kittenwitch/install/apps/app_store/tk-multi-workfiles/v0.6.15/python/tk_multi_workfiles/task_browser.py" />
+    <entry file="file:$PROJECT_DIR$/../../../../../Z:/Pipeline/BAD16023/kittenwitch/install/apps/app_store/tk-multi-workfiles/v0.6.15/hooks/filter_work_files.py" />
+    <entry file="file:$PROJECT_DIR$/../../../../../Z:/Pipeline/BAD16023/kittenwitch/install/apps/app_store/tk-multi-workfiles/v0.6.15/hooks/scene_operation_tk-maya.py" />
     <entry file="file:$PROJECT_DIR$/../../../../..//$PROJECT_DIR$/install/apps/app_store/tk-multi-publish/v0.6.10/hooks/scan_scene_tk-maya.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="105" column="42" selection-start-line="105" selection-start-column="40" selection-end-line="105" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:$PROJECT_DIR$/../../../../..//$PROJECT_DIR$/config/hooks/loader/mds-tk-maya_actions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="240" column="0" selection-start-line="240" selection-start-column="0" selection-end-line="240" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:$PROJECT_DIR$/../../../../..//Z:/Pipeline/BAD16023/kittenwitch/config/hooks/loader/mds-tk-maya_actions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="274" column="67" selection-start-line="274" selection-start-column="67" selection-end-line="274" selection-end-column="67" />
+        <state relative-caret-position="102">
+          <caret line="96" column="47" selection-start-line="96" selection-start-column="47" selection-end-line="96" selection-end-column="47" />
           <folding />
         </state>
       </provider>

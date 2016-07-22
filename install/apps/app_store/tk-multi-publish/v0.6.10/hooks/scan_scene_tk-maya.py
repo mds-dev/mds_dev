@@ -110,39 +110,40 @@ class ScanSceneHook(Hook):
 
                 # apparently maya has 2 names for the default layer. I'm
                 # guessing it actually renders out as 'masterLayer'.
-                layer = layer.replace("defaultRenderLayer", "masterLayer")
+                if ":" not in layer:
+                    layer = layer.replace("defaultRenderLayer", "masterLayer")
 
-                # these are the fields to populate into the template to match
-                # against
-                fields = {
-                    'render_layer': layer,
-                    'version': version,
-                    'Shot': shot,
-                    'Step': step,
-                }
+                    # these are the fields to populate into the template to match
+                    # against
+                    fields = {
+                        'render_layer': layer,
+                        'version': version,
+                        'Shot': shot,
+                        'Step': step,
+                    }
 
-                # match existing paths against the render template
-                paths = engine.tank.abstract_paths_from_template(
-                    render_template, fields)
-                print ""
-                for i in paths:
-                    print "path = {}".format(i)
+                    # match existing paths against the render template
+                    paths = engine.tank.abstract_paths_from_template(
+                        render_template, fields)
+                    print ""
+                    for i in paths:
+                        print "path = {}".format(i)
 
-                # if there's a match, add an item to the render
-                if paths:
-                    # Check that the directory exists
-                    dir_path = os.path.dirname(paths[0])
-                    if os.path.isdir(dir_path):
-                        items.append({
-                            "type": "maya_rendered_image",
-                            "name": layer,
-                            # since we already know the path, pass it along for
-                            # publish hook to use
-                            "other_params": {
-                                # just adding first path here. may want to do some
-                                # additional validation if there are multiple.
-                                'path': paths[0],
-                            }
-                        })
+                    # if there's a match, add an item to the render
+                    if paths:
+                        # Check that the directory exists
+                        dir_path = os.path.dirname(paths[0])
+                        if os.path.isdir(dir_path):
+                            items.append({
+                                "type": "maya_rendered_image",
+                                "name": layer,
+                                # since we already know the path, pass it along for
+                                # publish hook to use
+                                "other_params": {
+                                    # just adding first path here. may want to do some
+                                    # additional validation if there are multiple.
+                                    'path': paths[0],
+                                }
+                            })
 
         return items

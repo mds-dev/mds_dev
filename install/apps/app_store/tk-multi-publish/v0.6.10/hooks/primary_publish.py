@@ -640,12 +640,12 @@ class PrimaryPublishHook(Hook):
                                mayaInfo["Dependencies"]
                                )
         # else:
-        nukeShotBackupTemplate = self.parent.tank.templates["nuke_shot_backup_file"]
-        fields["task_name"] = sg_task["content"]
-        nukeShotBackupPath = nukeShotBackupTemplate.apply_fields(fields)
-        progress_cb(75.0, "Backing up Nuke Script")
+        # nukeShotBackupTemplate = self.parent.tank.templates["nuke_shot_backup_file"]
+        # fields["task_name"] = sg_task["content"]
+        # nukeShotBackupPath = nukeShotBackupTemplate.apply_fields(fields)
+        # progress_cb(75.0, "Backing up Nuke Script")
 
-        self.parent.copy_file(script_path, nukeShotBackupPath, task)
+        self.parent.copy_file(script_path, publish_path, task)
         progress_cb(100)
         return publish_path
 
